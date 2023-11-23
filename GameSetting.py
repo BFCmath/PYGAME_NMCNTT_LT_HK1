@@ -1,7 +1,7 @@
 class Board:
     BOARD_WIDTH = 1000
     BOARD_HEIGHT = 600
-    BACKGROUND_COLOR = (3, 252, 165)
+    BACKGROUND_COLOR = (137, 165, 97)
     GAME_CAPTION = "Game Caro"
 
 
@@ -14,7 +14,7 @@ class Menu:
         return (postionX,postionY,width,height)
     
     TITLE_RECT = CalculateRectSize(1/2,2/7,1/5,1/6)
-    TITLE_TEXT_SIZE = 100
+    TITLE_TEXT_SIZE = 80
 
     PLAY_BUTTON_RECT = CalculateRectSize(1/2,4/7,1/8,1/12)
     PLAY_BUTTON_SIZE = 35
