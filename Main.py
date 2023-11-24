@@ -6,9 +6,10 @@ from scene_management import SceneManagement
 def main():
     #khoi tao game
     pygame.init()
-
-    caroBoardSetting = Board() 
-    screen = pygame.display.set_mode((caroBoardSetting.BOARD_WIDTH,caroBoardSetting.BOARD_HEIGHT))
+    
+    #khoi tao cac gia tri dau game
+    caro_board_setting = Board() 
+    screen = pygame.display.set_mode((caro_board_setting.BOARD_WIDTH,caro_board_setting.BOARD_HEIGHT))
     pygame.display.set_caption(Board.GAME_CAPTION)
 
 

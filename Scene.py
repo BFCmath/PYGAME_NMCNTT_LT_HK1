@@ -1,8 +1,8 @@
 class Scene:
-    def RunFirstRime(self):
+    def run_first_time(self):
         # Run initialization code
         pass
 
-    def RunAllRime(self):
+    def run_all_time(self):
         # Run update code every frame
         pass
