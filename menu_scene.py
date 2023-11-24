@@ -1,6 +1,6 @@
-from Scene import Scene
-from GameSetting import Board
-from MenuVisual import MenuVisual
+from scene import Scene
+from game_setting import Board
+from menu_visual import MenuVisual
 
 class MenuScene(Scene):
     def RunFirstRime(self,screen):

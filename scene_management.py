@@ -1,4 +1,4 @@
-from MenuScene import MenuScene
+from menu_scene import MenuScene
 # SceneManagement.py
 class SceneManagement:
     def __init__(self, screen):

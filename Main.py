@@ -1,37 +1,29 @@
 #thu vien
 import pygame
-from GameSetting import Board
-from MenuVisual import MenuVisual as MV
-import SceneManagement
-#khoi tao game
-pygame.init()
+from game_setting import Board
+from scene_management import SceneManagement
+
+def main():
+    #khoi tao game
+    pygame.init()
+
+    caroBoardSetting = Board() 
+    screen = pygame.display.set_mode((caroBoardSetting.BOARD_WIDTH,caroBoardSetting.BOARD_HEIGHT))
+    pygame.display.set_caption(Board.GAME_CAPTION)
 
 
+    scene_manager = SceneManagement(screen)
 
-caroBoardSetting = Board() 
-screen = pygame.display.set_mode((caroBoardSetting.BOARD_WIDTH,caroBoardSetting.BOARD_HEIGHT))
-pygame.display.set_caption(Board.GAME_CAPTION)
-menuVisual = MV(screen)
-
-
-running = True
-sceneManagement = SceneManagement.SceneManagement(screen)
-# menuVisual.DrawBackGround()
-# menuVisual.DrawMenu()
-#game loop
-while running:
-    
-    #sceneManagement.RunCurrentScene()
-    #xử lý sự kiện
-    for event in pygame.event.get():
-    #sự kiện thoát
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:  # Phím Esc
+    running = True
+    #game loop
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 running = False
-        
-    # pygame.display.update()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    running = False
+    pygame.quit()
 
-#thoát chương trình
-pygame.quit()
+if __name__ == '__main__':
+    main()
