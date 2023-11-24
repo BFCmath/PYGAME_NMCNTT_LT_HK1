@@ -1,10 +1,11 @@
 from menu_scene import MenuScene
+from setting_scene import SettingScene
 # SceneManagement.py
 class SceneManagement:
     def __init__(self, screen):
         self.scenes = {
             'menu': MenuScene(),
-            # ... other scenes ...
+            'setting': SettingScene()
         }
         self.screen = screen
         self.current_scene = self.scenes['menu']
@@ -12,7 +13,7 @@ class SceneManagement:
 
     def SwitchToScene(self, scene_name):
         self.current_scene = self.scenes[scene_name]
-        self.current_scene.run_first_time()
+        self.current_scene.run_first_time(self.screen)
 
     def RunCurrentScene(self):
         if self.current_scene is not None:

@@ -12,7 +12,6 @@ def calculate_rect_size(ratioPostitionX,ratioPositionY,ratioWidth,ratioHeight):
         return (_postionX,_postionY,_width,_height)
         
 class Menu:
-    
     TITLE_RECT = calculate_rect_size(1/2,2/7,1/5,1/6)
     TITLE_TEXT_SIZE = 80
 
@@ -28,3 +27,15 @@ class Menu:
     PLAY_TEXT = 'Play game'
     SETTINGS_TEXT = 'Settings'
 
+class Settings:
+    SETTINGS_TITLE_RECT = calculate_rect_size(1/2,1/7,1/3,1/6)
+    SETTINGS_TITLE_TEXT_SIZE = 80
+    
+    SETTINGS_BACK_BUTTON_RECT = calculate_rect_size(1/2,11/14,1/6,1/12)
+    SETTINGS_BACK_BUTTON_SIZE = 50
+
+    SETTINGS_BUTTON_COLOR = (255, 255, 255)  # White
+    SETTINGS_BUTTON_TEXT_COLOR = (116, 124, 10)  # Black
+    SETTINGS_TITLE_TEXT = 'SETTINGS'
+    SETTINGS_BACK_TEXT = 'Back' 
+    SETTINGS_COLOR = (152,118,246)

@@ -24,6 +24,9 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False
+                elif event.key == pygame.K_SPACE:
+                    scene_manager.SwitchToScene('setting')
+        pygame.display.flip()
     pygame.quit()
 
 if __name__ == '__main__':
