@@ -6,7 +6,7 @@ class MenuVisual:
         self.screen = screen
             
     def draw_button(self, rect, text, size):
-        self.font = pygame.font.Font(None, size)
+        self.font = pygame.font.Font(Menu.FONT, size)
         pygame.draw.rect(self.screen, Menu.BUTTON_COLOR, rect)
         _text_surf = self.font.render(text, True, Menu.BUTTON_TEXT_COLOR)
         _text_rect = _text_surf.get_rect(center=(rect[0] + rect[2] // 2, rect[1] + rect[3] // 2))

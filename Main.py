@@ -26,7 +26,9 @@ def main():
                     running = False
                 elif event.key == pygame.K_SPACE:
                     scene_manager.SwitchToScene('setting')
+        pygame.time.Clock().tick(60)
         pygame.display.flip()
+    
     pygame.quit()
 
 if __name__ == '__main__':
