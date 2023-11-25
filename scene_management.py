@@ -15,6 +15,6 @@ class SceneManagement:
         self.current_scene = self.scenes[scene_name]
         self.current_scene.run_first_time(self.screen)
 
-    def RunCurrentScene(self):
+    def RunCurrentScene(self,event):
         if self.current_scene is not None:
-            self.current_scene.run_all_time()
+            self.current_scene.run_all_time(event)

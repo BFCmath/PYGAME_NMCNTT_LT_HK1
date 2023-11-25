@@ -19,6 +19,7 @@ def main():
     #game loop
     while running:
         for event in pygame.event.get():
+            scene_manager.RunCurrentScene(event)
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYDOWN:

@@ -34,11 +34,17 @@ class SettingVisual:
         # ve button
         pygame.display.update()
     def draw_input_box_place(self):
-        box1 = self.draw_input_box(Settings.SETTINGS_INPUT_BOX_RECT_1)
-        box2= self.draw_input_box(Settings.SETTINGS_INPUT_BOX_RECT_2)
+        self.box1 = self.draw_input_box(Settings.SETTINGS_INPUT_BOX_RECT_1)
+        self.box2= self.draw_input_box(Settings.SETTINGS_INPUT_BOX_RECT_2)
         self.draw_x()
         pygame.display.update()
-        return box1,box2
+        return self.box1,self.box2
     def draw_background(self):
         self.screen.fill(Settings.SETTINGS_COLOR)
+        pygame.display.update()
+    def draw_number_in_text_box(self, number, input_box_rect):
+        self.font = pygame.font.Font(Settings.FONT, 15)
+        _text_surf = self.font.render(str(number), True, Settings.SETTINGS_BUTTON_TEXT_COLOR)
+        _text_rect = _text_surf.get_rect(center=(input_box_rect[0] + input_box_rect[2] // 2, input_box_rect[1] + input_box_rect[3] // 2))
+        self.screen.blit(_text_surf, _text_rect)
         pygame.display.update()

@@ -8,6 +8,6 @@ class MenuScene(Scene):
         MenuVisual(screen).draw_menu()
         pass
 
-    def run_all_time(self):
+    def run_all_time(self,event):
         # Menu specific update code
         pass
