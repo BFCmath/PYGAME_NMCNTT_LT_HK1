@@ -44,7 +44,7 @@ while True:
                     checkBoardSize += int(user_text)
                 checkBoardSize = checkBoardSize * 10 + int(event.unicode)
                 #Valid range = [3; 15]
-                if checkBoardSize != 2 and checkBoardSize <= 15:
+                if checkBoardSize != 0 and checkBoardSize != 2 and checkBoardSize <= 15:
                     user_text += event.unicode
 
     ##Create the update sence
