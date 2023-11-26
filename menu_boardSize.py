@@ -5,7 +5,7 @@ pygame.init()
 screen = pygame.display.set_mode((1000, 700))
 base_font = pygame.font.Font(None, 28)
 fps = pygame.time.Clock()
-#Board size
+#Input
 user_text = ''
 
 #Create a rectangle at (x, y)
