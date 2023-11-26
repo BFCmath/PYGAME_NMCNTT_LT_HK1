@@ -26,7 +26,7 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     running = False
                 elif event.key == pygame.K_SPACE:
-                    scene_manager.SwitchToScene('setting')
+                    scene_manager.SwitchToScene('play_game')
         pygame.time.Clock().tick(60)
         pygame.display.flip()
     

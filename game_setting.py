@@ -58,3 +58,26 @@ class Settings:
     SETTINGS_COLOR = (152,118,246)
     FONT = 'kongtext.ttf'
 
+class PlayGame:
+    
+    TURN_TEXT_POSITION = (10, 10)
+    BACK_BUTTON_RECT = calculate_rect_size(0.925,0.05,1/10,1/20)
+    BACK_BUTTON_COLOR = (255, 255, 255)  # White
+    BACK_TEXT_COLOR = (0,0,0)
+    BACK_TEXT = 'Back'
+    PLAYER1_TEXT_POSITION = (10, Board.BOARD_HEIGHT - 40)
+    PLAYER2_TEXT_POSITION = (Board.BOARD_WIDTH - 10, Board.BOARD_HEIGHT - 40)
+    PLAYER1_TEXT = 'Player 1: X'
+    PLAYER2_TEXT = 'Player 2: O'
+    BACKGROUND_COLOR = (123, 179, 243)
+    
+    turn_text = 'Player 1\'s turn!'
+    TEXT_SIZE = 16
+    TEXT_COLOR = (0, 0, 0)
+    FONT = 'kongtext.ttf'
+    
+    def change_turn_text(self, turn):
+        if turn == 1:
+            self.turn_text = 'Player 1\'s turn!'
+        else:
+            self.turn_text = 'Player 2\'s turn!'

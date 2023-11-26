@@ -34,8 +34,7 @@ class SettingLogic:
                 potential_value = self.input_values[self.active_box] + event.unicode
                 # Check if the potential value is within the desired range
                 # if potential_value and 3 <= int(potential_value) <= 15:
-                self.input_values[self.active_box] = potential_value
-
+                self.input_values[self.active_box] = potential_value            
         return True if value_change else False
 
     def get_input_values(self):

@@ -1,11 +1,12 @@
 from menu_scene import MenuScene
 from setting_scene import SettingScene
-# SceneManagement.py
+from play_game_scene import PlayGameScene
 class SceneManagement:
     def __init__(self, screen):
         self.scenes = {
             'menu': MenuScene(),
-            'setting': SettingScene()
+            'setting': SettingScene(),
+            'play_game': PlayGameScene()
         }
         self.screen = screen
         self.current_scene = self.scenes['menu']

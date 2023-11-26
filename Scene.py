@@ -1,5 +1,5 @@
 class Scene:
-    def run_first_time(self):
+    def run_first_time(self,screen):
         # Run initialization code
         pass
 
