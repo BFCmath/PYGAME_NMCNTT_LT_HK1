@@ -1,6 +1,6 @@
 import pygame
 from game_setting import PlayGame, Board
-
+import cell
 class PlayGameVisual:
     def __init__(self, screen):
         self.screen = screen
@@ -32,9 +32,15 @@ class PlayGameVisual:
         # self.print_text(back_text, self.text_color, PlayGame.BACK_TEXT_POSITION, alignment="right")
         self.print_text(PlayGame.PLAYER1_TEXT, self.text_color, PlayGame.PLAYER1_TEXT_POSITION, alignment="left")
         self.print_text(PlayGame.PLAYER2_TEXT, self.text_color, PlayGame.PLAYER2_TEXT_POSITION, alignment="right")
-
         pygame.display.update()  
 
     def draw_background(self):
         self.screen.fill(PlayGame.BACKGROUND_COLOR)
-
+    def draw_caro_board(self,number_row,number_col,cell_edge,posi_list):
+        cell_list = [[0 for i in range(number_col)] for j in range(number_row)]
+        for i in range(number_row):
+            for j in range(number_col):
+                cell_list[i][j] = cell.Cell(cell_edge,posi_list[i][j][0],posi_list[i][j][1])
+                cell_list[i][j].draw_cell(self.screen)
+        pygame.display.update()
+        

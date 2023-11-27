@@ -58,6 +58,9 @@ class Settings:
     SETTINGS_COLOR = (152,118,246)
     FONT = 'kongtext.ttf'
 
+    row_cells = 10
+    col_cells = 30
+
 class PlayGame:
     
     TURN_TEXT_POSITION = (10, 10)
@@ -75,9 +78,15 @@ class PlayGame:
     TEXT_SIZE = 16
     TEXT_COLOR = (0, 0, 0)
     FONT = 'kongtext.ttf'
-    
+    CARO_BOARD_WIDTH = 800 
+    CARO_BOARD_HEIGHT = 400
     def change_turn_text(self, turn):
         if turn == 1:
             self.turn_text = 'Player 1\'s turn!'
         else:
             self.turn_text = 'Player 2\'s turn!'
+
+class CellSetting:
+    CELL_COLOR = (255, 255, 255)  # White
+    CELL_TEXT_COLOR = (0, 0, 0)  # Black
+    EDGE_COLOR = (0, 0, 0)  # Black
