@@ -15,6 +15,7 @@ color_active = pygame.Color(255, 255, 255)
 color_passive = pygame.Color(92, 92, 61)
 #Initially, the cursor is inside the rectangle
 active = True
+checkBoardSize = 0
 color = color_active
 
 #Repeatedly update new scenes
@@ -44,8 +45,17 @@ while True:
                     checkBoardSize += int(user_text)
                 checkBoardSize = checkBoardSize * 10 + int(event.unicode)
                 #Valid range = [3; 15]
-                if checkBoardSize != 0 and checkBoardSize != 2 and checkBoardSize <= 15:
-                    user_text += event.unicode
+                if checkBoardSize != 0:
+                    #Exceed -> minimize to 15
+                    if (checkBoardSize > 15):
+                        user_text = '15'
+                    #Inclusive -> valid
+                    else:
+                        user_text += event.unicode
+                else:
+                    user_text = '3'
+            else:
+                user_text = '3'
 
     ##Create the update sence
     #Create an empty screen
@@ -55,6 +65,9 @@ while True:
         color = color_active
     else:
         color = color_passive
+        #Left empty or < 3 -> round up to 3
+        if (user_text == '' or int(user_text) < 3):
+            user_text = '3'
     #Draw the rectangle (border only)
     pygame.draw.rect(screen, color, input_rect, 2)
     #Expand the rectangle to the text size
