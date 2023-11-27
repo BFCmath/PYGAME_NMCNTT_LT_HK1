@@ -6,8 +6,8 @@ class Cell:
         self.position_center_x = position_center_x
         self.position_center_y = position_center_y
         # Calculate the top-left corner based on the center position and edge size
-        top_left_x = position_center_x - edge_size // 2
-        top_left_y = position_center_y - edge_size // 2
+        top_left_x = position_center_x
+        top_left_y = position_center_y
         # Define the rectangle representing the cell
         self.rect = pygame.Rect(top_left_x, top_left_y, edge_size, edge_size)
         self.content = None  # Can be 'X', 'O', or None

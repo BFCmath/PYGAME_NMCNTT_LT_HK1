@@ -8,6 +8,7 @@ class PlayGameScene(Scene):
         row_cells = Settings.row_cells
         col_cells = Settings.col_cells
         edge_size = min(PlayGame.CARO_BOARD_WIDTH // col_cells, PlayGame.CARO_BOARD_HEIGHT // row_cells)
+        
         start_x = (Board.BOARD_WIDTH - (edge_size * col_cells)) / 2
         start_y = (Board.BOARD_HEIGHT - (edge_size * row_cells)) / 2
 
