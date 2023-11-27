@@ -54,8 +54,6 @@ while True:
                         user_text += event.unicode
                 else:
                     user_text = '3'
-            else:
-                user_text = '3'
 
     ##Create the update sence
     #Create an empty screen
