@@ -1,7 +1,5 @@
 # setting_logic.py
 import pygame
-from _scene.setting_scene import SettingScene
-from _scene.play_game_scene import PlayGameScene
 from singleton import Singleton
 class MenuLogic:
     def __init__(self,screen, play_button,setting_button):

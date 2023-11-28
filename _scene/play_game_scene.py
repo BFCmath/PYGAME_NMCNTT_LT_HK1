@@ -3,6 +3,7 @@ import pygame
 # from game_setting import Board
 from _visual.play_game_visual import PlayGameVisual
 from game_setting import Settings,PlayGame,Board
+from _logic.play_game_logic import PlayGameLogic
 class PlayGameScene(Scene):
     def calculate_posi_list_and_edge():
         row_cells = Settings.row_cells
@@ -25,10 +26,12 @@ class PlayGameScene(Scene):
         play_game_visual = PlayGameVisual(screen)
         # Call draw_background once, and then draw_all_texts every frame or when the text needs to update
         play_game_visual.draw_background()
-        play_game_visual.draw_all_texts()
+        self.back_button = play_game_visual.draw_all_texts()
         edge_size, posi_list = PlayGameScene.calculate_posi_list_and_edge()
         play_game_visual.draw_caro_board(Settings.row_cells,Settings.col_cells,edge_size,posi_list)
+        self.play_game_logic = PlayGameLogic(screen,self.back_button)
         pass
     def run_all_time(self,event):
         # Menu specific update code
+        self.play_game_logic.handle_event(event)
         pass
