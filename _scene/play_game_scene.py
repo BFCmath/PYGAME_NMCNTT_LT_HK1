@@ -1,7 +1,7 @@
 from scene import Scene
 import pygame
 # from game_setting import Board
-from play_game_visual import PlayGameVisual
+from _visual.play_game_visual import PlayGameVisual
 from game_setting import Settings,PlayGame,Board
 class PlayGameScene(Scene):
     def calculate_posi_list_and_edge():

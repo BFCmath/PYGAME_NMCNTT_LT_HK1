@@ -1,21 +1,21 @@
-from menu_scene import MenuScene
-from setting_scene import SettingScene
-from play_game_scene import PlayGameScene
+# from _scene.menu_scene import MenuScene
+# from _scene.setting_scene import SettingScene
+# from _scene.play_game_scene import PlayGameScene
+# from singleton import Singleton 
 class SceneManagement:
     def __init__(self, screen):
-        self.scenes = {
-            'menu': MenuScene(),
-            'setting': SettingScene(),
-            'play_game': PlayGameScene()
-        }
+        # self.scenes = {
+        #     'menu': MenuScene(),
+        #     'setting': SettingScene(),
+        #     'play_game': PlayGameScene()
+        # }
         self.screen = screen
-        self.current_scene = self.scenes['menu']
-        self.current_scene.run_first_time(screen)
+        self.current_scene = None
 
-    def SwitchToScene(self, scene_name):
-        self.current_scene = self.scenes[scene_name]
+    def SwitchToScene(self, scene):
+        self.current_scene = scene
         self.current_scene.run_first_time(self.screen)
+        # Singleton.change = True
 
     def RunCurrentScene(self,event):
-        if self.current_scene is not None:
-            self.current_scene.run_all_time(event)
+        self.current_scene.run_all_time(event)

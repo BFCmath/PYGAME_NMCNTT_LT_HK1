@@ -50,7 +50,7 @@ class Settings:
     SETTINGS_INPUT_BOX_RECT_2 = calculate_square_size(SETTINGS_X_PLACE[0]+0.035,SETTINGS_X_PLACE[1],0.04)
     
     SETTINGS_BUTTON_COLOR = (255, 255, 255) 
-    SETTINGS_BUTTON_TEXT_COLOR = (116, 124, 10) 
+    SETTINGS_BUTTON_TEXT_COLOR = (0, 0, 10) 
     SETTINGS_INPUT_BOX_COLOR = (0, 0, 0) 
     SETTINGS_TITLE_TEXT = 'SETTINGS'
     SETTINGS_BACK_TEXT = 'Back' 
@@ -58,8 +58,8 @@ class Settings:
     SETTINGS_COLOR = (152,118,246)
     FONT = 'kongtext.ttf'
 
-    row_cells = 5
-    col_cells = 3
+    row_cells = 15
+    col_cells = 15
 
 class PlayGame:
     
