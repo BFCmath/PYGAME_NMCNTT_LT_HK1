@@ -21,7 +21,7 @@ def checkWin(numRow, numCol, cur_row, cur_col, cnt):
 
         nxt_x = cur_row - dir_x[t]
         nxt_y = cur_row - dir_y[t]
-        if inside(numRow, numCol, pre_x, pre_y):
+        if inside(numRow, numCol, nxt_x, nxt_y):
             both += cnt[nxt_x][nxt_y]
             cnt[cur_row][cur_col][7 - t] = cnt[nxt_x][nxt_y][t]  + 1
         else:
