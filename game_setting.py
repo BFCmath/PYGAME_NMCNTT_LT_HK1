@@ -1,9 +1,3 @@
-class Board:
-    BOARD_WIDTH = 1000
-    BOARD_HEIGHT = 600
-    BACKGROUND_COLOR = (137, 165, 97)
-    GAME_CAPTION = "Game Caro"
-
 def calculate_rect_size(ratioPostitionX,ratioPositionY,ratioWidth,ratioHeight):
         _width = Board.BOARD_WIDTH*ratioWidth
         _height = Board.BOARD_HEIGHT*ratioHeight
@@ -15,6 +9,12 @@ def calculate_square_size(ratioPostitionX,ratioPositionY,ratioEdge):
         _postionX = Board.BOARD_WIDTH* ratioPostitionX - _edge//2
         _postionY = Board.BOARD_HEIGHT*ratioPositionY - _edge//2
         return (_postionX,_postionY,_edge,_edge)
+class Board:
+    BOARD_WIDTH = 1000
+    BOARD_HEIGHT = 600
+    BACKGROUND_COLOR = (137, 165, 97)
+    GAME_CAPTION = "Game Caro"
+
 
 class Menu:
     TITLE_RECT = calculate_rect_size(1/2,2/7,1/5,1/6)
@@ -58,8 +58,6 @@ class Settings:
     SETTINGS_COLOR = (152,118,246)
     FONT = 'kongtext.ttf'
 
-    row_cells = 15
-    col_cells = 15
 
 class PlayGame:
     
@@ -74,19 +72,16 @@ class PlayGame:
     PLAYER2_TEXT = 'Player 2: O'
     BACKGROUND_COLOR = (123, 179, 243)
     
-    turn_text = 'Player 1\'s turn!'
+    
     TEXT_SIZE = 16
     TEXT_COLOR = (0, 0, 0)
     FONT = 'kongtext.ttf'
     CARO_BOARD_WIDTH = 800
     CARO_BOARD_HEIGHT = 400
-    def change_turn_text(self, turn):
-        if turn == 1:
-            self.turn_text = 'Player 1\'s turn!'
-        else:
-            self.turn_text = 'Player 2\'s turn!'
 
 class CellSetting:
     CELL_COLOR = (255, 255, 255)  # White
     CELL_TEXT_COLOR = (0, 0, 0)  # Black
     EDGE_COLOR = (0, 0, 0)  # Black
+    SIGN_COLOR = [(46,165,205),(135,62,35)]
+    SIGN_FONT = None
