@@ -26,11 +26,14 @@ class Menu:
     SETTINGS_BUTTON_RECT = calculate_rect_size(1/2,11/14,1/8,1/13)
     SETTINGS_BUTTON_SIZE = 13
 
+    QUIT_BUTTON_RECT = calculate_rect_size(1/2,0.9,0.1,0.05)
+    QUIT_BUTTON_SIZE = 13
     BUTTON_COLOR = (255, 255, 255)  # White
     BUTTON_TEXT_COLOR = (0, 0, 0)  # Black
     TITLE_TEXT = 'Caro'
     PLAY_TEXT = 'Play game'
     SETTINGS_TEXT = 'Settings'
+    QUIT_TEXT = 'Quit'
     FONT = 'kongtext.ttf'
 
 class Settings:

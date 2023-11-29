@@ -21,17 +21,16 @@ class Cell:
     def check_click(self, mouse_pos):
         if(self.rect.collidepoint(mouse_pos)):
             self.draw_sign()
-        return self.content
+            return self.content
+        return None
 
     def draw_sign(self):
         if self.content is None: 
             if(Singleton.turn==0):
                 _color = CellSetting.SIGN_COLOR[Singleton.turn]
-                Singleton.turn =1
                 self.content = 'X'
             else:
                 _color = CellSetting.SIGN_COLOR[Singleton.turn]
-                Singleton.turn = 0
                 self.content = 'O'
            # Set the font for rendering the 'X'
             self.font = pygame.font.Font(CellSetting.SIGN_FONT, self.edge_size)  # Make sure PlayGame.FONT points to a valid font file

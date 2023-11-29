@@ -4,6 +4,7 @@ from singleton import Singleton
 from game_setting import PlayGame,Board
 from singleton import Singleton
 from cell import Cell
+from check_win_logic import check_win
 class PlayGameLogic:
     def __init__(self,screen, back_button, cell_list):
         self.back_button = back_button
@@ -35,10 +36,22 @@ class PlayGameLogic:
 
     def handle_caro_board_logic(self,event):
         for row in range(self.row_cells):
-                for col in range(self.col_cells):
-                    content = self.cell_list[row][col].check_click(event.pos)
-                    if content == 'O':
-                        self.logic_caro_board[row][col]=-1
-                    elif content == 'X':
-                        self.logic_caro_board[row][col]=1
-
+            for col in range(self.col_cells):
+                content = self.cell_list[row][col].check_click(event.pos)
+                if content == 'O':
+                    print(row,col)
+                    self.logic_caro_board[row][col]=-1
+                    self.win_logic(row,col)
+                    self.change_turn()
+                elif content == 'X':
+                    print(row,col)
+                    self.logic_caro_board[row][col]=1
+                    self.win_logic(row,col)
+                    self.change_turn()
+    def win_logic(self,row,col):
+        turn = 1 if Singleton.turn == 1 else -1
+        if(check_win(turn,row,col,self.logic_caro_board,self.row_cells,self.col_cells)):
+            # print(self.logic_caro_board)
+            print("win")
+    def change_turn(self):
+        Singleton.turn = 1 if Singleton.turn == 0 else 0
