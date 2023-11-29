@@ -15,13 +15,17 @@ def checkWin(numRow, numCol, cur_row, cur_col, cnt):
         pre_y = cur_col + dir_y[t]
         if inside(numRow, numCol, pre_x, pre_y):
             both += cnt[pre_x][pre_y] 
-            cnt[pre_x][pre_y][7 - t] += 1
+            cnt[cur_row][cur_col][t] = cnt[pre_x][pre_y][7 - t] + 1
+        else:
+            cnt[cur_row][cur_col][t] = 1
 
         nxt_x = cur_row - dir_x[t]
         nxt_y = cur_row - dir_y[t]
         if inside(numRow, numCol, pre_x, pre_y):
             both += cnt[nxt_x][nxt_y]
-            cnt[nxt_x][nxt_y][t] += 1
+            cnt[cur_row][cur_col][7 - t] = cnt[nxt_x][nxt_y][t]  + 1
+        else:
+            cnt[cur_row][cur_col][7 - t] = 1
 
         ok |= both >= 5
 
