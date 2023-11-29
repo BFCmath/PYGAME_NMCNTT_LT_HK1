@@ -21,8 +21,7 @@ class Cell:
     def check_click(self, mouse_pos):
         if(self.rect.collidepoint(mouse_pos)):
             self.draw_sign()
-            return True
-        return False
+        return self.content
 
     def draw_sign(self):
         if self.content is None: 

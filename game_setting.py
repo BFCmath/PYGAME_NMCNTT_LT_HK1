@@ -83,5 +83,5 @@ class CellSetting:
     CELL_COLOR = (255, 255, 255)  # White
     CELL_TEXT_COLOR = (0, 0, 0)  # Black
     EDGE_COLOR = (0, 0, 0)  # Black
-    SIGN_COLOR = [(46,165,205),(135,62,35)]
+    SIGN_COLOR = [(46,165,205),(232,15,15)]
     SIGN_FONT = None
