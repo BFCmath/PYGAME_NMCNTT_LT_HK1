@@ -11,6 +11,7 @@ class PlayGameLogic:
         self.cell_list = cell_list 
         self.row_cells =  Singleton.row_cell
         self.col_cells =  Singleton.col_cell
+        self.logic_caro_board = [[(0) for i in range(self.col_cells)] for j in range(self.row_cells)]
     def calculate_posi_list_and_edge(row_cells,col_cells):
         edge_size = min(PlayGame.CARO_BOARD_WIDTH // col_cells, PlayGame.CARO_BOARD_HEIGHT // row_cells)
         
@@ -30,9 +31,14 @@ class PlayGameLogic:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.back_button.collidepoint(event.pos):
                 Singleton.scenes = 0
-            for row in range(self.row_cells):
-                for col in range(self.col_cells):
-                    if self.cell_list[row][col].check_click(event.pos):
-                        print(row,col)
+            self.handle_caro_board_logic(event)
 
+    def handle_caro_board_logic(self,event):
+        for row in range(self.row_cells):
+                for col in range(self.col_cells):
+                    content = self.cell_list[row][col].check_click(event.pos)
+                    if content == 'O':
+                        self.logic_caro_board[row][col]=-1
+                    elif content == 'X':
+                        self.logic_caro_board[row][col]=1
 
