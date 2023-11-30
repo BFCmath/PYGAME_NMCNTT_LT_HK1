@@ -5,7 +5,7 @@ from game_setting import Board
 class Singleton:
     screen = pygame.display.set_mode((Board().BOARD_WIDTH,Board().BOARD_HEIGHT))
     scene_manager = SceneManagement(screen)
-    scenes = 0
+    scenes = 'intro' #intro,menu,setting,play_game
     row_cell = 20
     col_cell = 20
     turn = 0

@@ -12,7 +12,7 @@ class MenuVisual(GeneralVisual):
         quit_button = self.draw_button(self.screen,Menu.QUIT_BUTTON_RECT, Menu.QUIT_TEXT,Menu.QUIT_BUTTON_SIZE,Menu.FONT,Menu.BUTTON_COLOR,Menu.BUTTON_TEXT_COLOR)
         # ve button
         pygame.display.update()
-        return play_button,setting_button
+        return play_button,setting_button,quit_button
         
     def draw_background(self):
         self.screen.fill(Board().BACKGROUND_COLOR)

@@ -16,7 +16,7 @@ class SettingLogic:
             print("mouse down")
             if self.back_button.collidepoint(event.pos):
                 print("back")
-                Singleton.scenes = 0
+                Singleton.scenes = 'menu'
             # Check which input box was clicked, if any
             if self.input_boxes[0].collidepoint(event.pos):
                 self.active_box = 0

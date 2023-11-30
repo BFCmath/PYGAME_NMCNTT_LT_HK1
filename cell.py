@@ -19,7 +19,7 @@ class Cell:
         pygame.draw.rect(screen,CellSetting().EDGE_COLOR, self.rect, 1)
 
     def check_click(self, mouse_pos):
-        if(self.rect.collidepoint(mouse_pos)):
+        if(self.rect.collidepoint(mouse_pos) and self.content is None):
             self.draw_sign()
             return self.content
         return None

@@ -15,7 +15,18 @@ class Board:
     BACKGROUND_COLOR = (137, 165, 97)
     GAME_CAPTION = "Game Caro"
 
+class Intro:
+    LOGO_RECT = calculate_rect_size(1/2,1/2,1/3,1/3)
+    LOGO_IMAGE = 'logo_caro.jpg'
+    LOGO_IMAGE_SIZE = (400,400)
+    LOGO_BACKGROUND_COLOR = (255,255,255)
+    LOGO_BORDER_COLOR = (0,0,0)
 
+    LOADING_BAR_RECT = calculate_rect_size(1/2,0.9,1/2,1/20)
+    LOADING_BAR_COLOR = (0, 128, 0)
+    LOADING_BAR_BACKGROUND_COLOR = (128, 128, 128)
+    LOADING_TIME = 5000
+    
 class Menu:
     TITLE_RECT = calculate_rect_size(1/2,2/7,1/5,1/6)
     TITLE_TEXT_SIZE = 50
@@ -79,8 +90,8 @@ class PlayGame:
     TEXT_SIZE = 16
     TEXT_COLOR = (0, 0, 0)
     FONT = 'kongtext.ttf'
-    CARO_BOARD_WIDTH = 800
-    CARO_BOARD_HEIGHT = 400
+    CARO_BOARD_WIDTH = 900
+    CARO_BOARD_HEIGHT = 500
 
 class CellSetting:
     CELL_COLOR = (255, 255, 255)  # White
