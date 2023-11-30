@@ -17,7 +17,7 @@ class Board:
 
 class Intro:
     LOGO_RECT = calculate_rect_size(1/2,1/2,1/3,1/3)
-    LOGO_IMAGE = 'logo_caro.jpg'
+    LOGO_IMAGE = '__others\logo_caro.jpg'
     LOGO_IMAGE_SIZE = (400,400)
     LOGO_BACKGROUND_COLOR = (255,255,255)
     LOGO_BORDER_COLOR = (0,0,0)
@@ -45,7 +45,7 @@ class Menu:
     PLAY_TEXT = 'Play game'
     SETTINGS_TEXT = 'Settings'
     QUIT_TEXT = 'Quit'
-    FONT = 'kongtext.ttf'
+    FONT = '__others\kongtext.ttf'
 
 class Settings:
     SETTINGS_TITLE_RECT = calculate_rect_size(1/2,1/7,1/3,1/6)
@@ -70,7 +70,7 @@ class Settings:
     SETTINGS_BACK_TEXT = 'Back' 
     SETTINGS_BOARD_SIZE_TEXT = 'Caro board size'
     SETTINGS_COLOR = (152,118,246)
-    FONT = 'kongtext.ttf'
+    FONT = '__others\kongtext.ttf'
 
 
 class PlayGame:
@@ -89,7 +89,8 @@ class PlayGame:
     
     TEXT_SIZE = 16
     TEXT_COLOR = (0, 0, 0)
-    FONT = 'kongtext.ttf'
+    FONT = '__others\kongtext.ttf'
+
     CARO_BOARD_WIDTH = 900
     CARO_BOARD_HEIGHT = 500
 

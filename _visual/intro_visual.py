@@ -4,7 +4,7 @@ from _visual.general_visual import GeneralVisual
 class IntroVisual(GeneralVisual):
     def __init__(self, screen):
         self.screen = screen
-
+        self.loading_bar_length = Intro.LOADING_BAR_RECT[2]
     def draw_logo(self):
         print("logo")
         self.logo_image = pygame.image.load(Intro.LOGO_IMAGE)
@@ -14,18 +14,19 @@ class IntroVisual(GeneralVisual):
         pygame.display.update()
         
     def draw_loading_bar_background(self):
-        print("loading bar")
         self.loading_bar_color = Intro.LOADING_BAR_COLOR
         self.loading_bar_background_color = Intro.LOADING_BAR_BACKGROUND_COLOR
         self.loading_bar_rect = pygame.Rect(Intro.LOADING_BAR_RECT)
         pygame.draw.rect(self.screen, Intro.LOADING_BAR_BACKGROUND_COLOR, Intro.LOADING_BAR_RECT)
         pygame.display.update()
     def draw_loading_bar(self,elapsed_time):
-        self.loading_bar_length = Intro.LOADING_BAR_RECT[2]
-        self.loading_bar_rect.width = (elapsed_time / Intro.LOADING_TIME) * self.loading_bar_length
+        
+        self.loading_bar_rect.width = min(1,(elapsed_time / Intro.LOADING_TIME)) * self.loading_bar_length
         pygame.draw.rect(self.screen, self.loading_bar_color, self.loading_bar_rect)
-        pygame.display.update()
+        pygame.display.flip()
+    
     def draw_background(self):
+
         self.screen.fill(Board().BACKGROUND_COLOR)
         pygame.display.update()
 

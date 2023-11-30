@@ -11,7 +11,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Game Loading")
 
 # Load logo image
-logo_image = pygame.image.load('logo_caro.jpg')
+logo_image = pygame.image.load('__others/logo_caro.jpg')
 logo_image = pygame.transform.scale(logo_image, (400, 400))  # Scale the logo to the desired size
 
 # Loading bar settings

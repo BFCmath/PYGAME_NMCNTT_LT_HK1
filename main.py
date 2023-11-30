@@ -37,6 +37,7 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 running = False
+    scene_manager.RunImplicitScene()
     pygame.time.Clock().tick(60)
     pygame.display.flip()
 

@@ -10,8 +10,7 @@ class IntroScene(Scene):
         self.intro_logic = IntroLogic()
         pass
 
-    def run_all_time(self,event):
-        elapsed_time = self.intro_logic.handle_event(event)
+    def run_implicit_time(self):
+        elapsed_time = self.intro_logic.handle_implicit_event()
         self.intro_scene.draw_loading_bar(elapsed_time)
         self.intro_logic.check_time()
-        pass
