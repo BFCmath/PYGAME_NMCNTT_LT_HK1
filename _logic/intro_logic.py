@@ -12,6 +12,6 @@ class IntroLogic:
         self.elapsed_time = pygame.time.get_ticks() - self.start_time
         return self.elapsed_time
     def check_time(self):
-        if self.elapsed_time > self.loading_time*1.1:
+        if self.elapsed_time > self.loading_time:
             Singleton.scenes = 'menu'
             

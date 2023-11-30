@@ -19,25 +19,26 @@ running = True
 scene_manager.SwitchToScene(IntroScene())
 last_scene = Singleton.scenes
 while running:
+    if(last_scene != Singleton.scenes):
+        last_scene = Singleton.scenes
+        if(Singleton.scenes == 'intro'):
+            scene_manager.SwitchToScene(IntroScene())
+        elif(Singleton.scenes == 'menu'): 
+            scene_manager.SwitchToScene(MenuScene())
+        elif(Singleton.scenes == 'setting'):
+            scene_manager.SwitchToScene(SettingScene())
+        elif(Singleton.scenes == 'play_game'):
+            scene_manager.SwitchToScene(PlayGameScene())
+        print(scene_manager.current_scene)
+    scene_manager.RunImplicitScene()
+    
     for event in pygame.event.get():
-        if(last_scene != Singleton.scenes):
-            last_scene = Singleton.scenes
-            if(Singleton.scenes == 'intro'):
-                scene_manager.SwitchToScene(IntroScene())
-            elif(Singleton.scenes == 'menu'): 
-                scene_manager.SwitchToScene(MenuScene())
-            elif(Singleton.scenes == 'setting'):
-                scene_manager.SwitchToScene(SettingScene())
-            elif(Singleton.scenes == 'play_game'):
-                scene_manager.SwitchToScene(PlayGameScene())
-            print(scene_manager.current_scene)
         scene_manager.RunCurrentScene(event)
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 running = False
-    scene_manager.RunImplicitScene()
     pygame.time.Clock().tick(60)
     pygame.display.flip()
 
