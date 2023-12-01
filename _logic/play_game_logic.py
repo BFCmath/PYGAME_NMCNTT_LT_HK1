@@ -32,7 +32,8 @@ class PlayGameLogic:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.back_button.collidepoint(event.pos):
                 Singleton.scenes = 'menu'
-            self.handle_caro_board_logic(event)
+            turn_changed = self.handle_caro_board_logic(event)
+            return turn_changed
 
     def handle_caro_board_logic(self,event):
         for row in range(self.row_cells):
@@ -43,7 +44,9 @@ class PlayGameLogic:
                 self.logic_caro_board[row][col]=-1 if content == 'O' else 1
                 self.win_logic(row,col)
                 self.change_turn()
-                return
+                return True
+        return False        
+        
     def win_logic(self,row,col):
         turn = 1 if Singleton.turn == 0 else -1
         if(check_win(turn,row,col,self.logic_caro_board,self.row_cells,self.col_cells)):

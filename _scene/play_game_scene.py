@@ -7,16 +7,17 @@ from _logic.play_game_logic import PlayGameLogic
 from singleton import Singleton
 class PlayGameScene(Scene):
     def run_first_time(self,screen):
-        play_game_visual = PlayGameVisual(screen)
+        self.play_game_visual = PlayGameVisual(screen)
         # Call draw_background once, and then draw_all_texts every frame or when the text needs to update
-        play_game_visual.draw_background()
-        self.back_button = play_game_visual.draw_all_texts()
+        self.play_game_visual.draw_background()
+        self.back_button = self.play_game_visual.draw_all_texts()
 
         edge_size, posi_list = PlayGameLogic.calculate_posi_list_and_edge(Singleton.row_cell,Singleton.col_cell)
-        self.cell_list = play_game_visual.draw_caro_board(Singleton.row_cell,Singleton.col_cell,edge_size,posi_list)
+        self.cell_list = self.play_game_visual.draw_caro_board(Singleton.row_cell,Singleton.col_cell,edge_size,posi_list)
         self.play_game_logic = PlayGameLogic(screen,self.back_button, self.cell_list)
         pass
     def run_all_time(self,event):
         # Menu specific update code
-        self.play_game_logic.handle_event(event)
+        turn_changed = self.play_game_logic.handle_event(event)
+        if turn_changed: self.play_game_visual.draw_turn_text(Singleton.turn)
         pass

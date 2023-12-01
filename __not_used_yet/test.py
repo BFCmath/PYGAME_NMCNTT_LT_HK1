@@ -1,65 +1,75 @@
 import pygame
 import sys
 
-# Initialize Pygame
+class InputBox:
+    def __init__(self, x, y, w, h, text=''):
+        self.rect = pygame.Rect(x, y, w, h)
+        self.color = pygame.Color('lightskyblue3')
+        self.text = text
+        self.font = pygame.font.SysFont(None, 32)
+        self.active = False
+        self.limit = 10
+
+    def handle_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.rect.collidepoint(event.pos):
+                self.active = not self.active
+            else:
+                self.active = False
+            self.color = pygame.Color('dodgerblue2') if self.active else pygame.Color('lightskyblue3')
+        if event.type == pygame.KEYDOWN and self.active:
+            if event.key == pygame.K_BACKSPACE:
+                self.text = self.text[:-1]
+            else:
+                if len(self.text) < self.limit:
+                    self.text += event.unicode
+
+    def update(self):
+        # Update the width of the rect based on the text length
+        width = max(200, self.font.size(self.text)[0] + 10)
+        self.rect.w = width
+
+    def draw(self, screen):
+        # Draw the text
+        txt_surface = self.font.render(self.text, True, pygame.Color('black'))
+        screen.blit(txt_surface, (self.rect.x + 5, self.rect.y + 5))
+        # Draw the rect
+        pygame.draw.rect(screen, self.color, self.rect, 2)
+
+# Khởi tạo Pygame
 pygame.init()
 
-# Set up the display
+# Thiết lập màn hình
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Game Loading")
+pygame.display.set_caption("Enter Player Names")
 
-# Load logo image
-logo_image = pygame.image.load('__others/logo_caro.jpg')
-logo_image = pygame.transform.scale(logo_image, (400, 400))  # Scale the logo to the desired size
+# Màu sắc
+white = (255, 255, 255)
 
-# Loading bar settings
-loading_bar_length = 300
-loading_bar_height = 25
-loading_bar_color = (0, 128, 0)
-loading_bar_background_color = (128, 128, 128)
-loading_bar_position = (screen_width // 2 - loading_bar_length // 2, screen_height - 50)
-loading_bar_rect = pygame.Rect(loading_bar_position[0], loading_bar_position[1], 0, loading_bar_height)
+# Tạo hai input boxes
+input_box1 = InputBox(100, 150, 140, 32)
+input_box2 = InputBox(100, 250, 140, 32)
+screen.fill(white)  # Vẽ nền màn hình trắng
 
-# Intro loop
-intro = True
-start_time = pygame.time.get_ticks()  # Get the start time
-loading_time = 5000  # Time in milliseconds to display the intro
-
-while intro:
+# Game loop
+running = True
+while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+            running = False
+        input_box1.handle_event(event)
+        input_box2.handle_event(event)
 
-    # Calculate elapsed time
-    elapsed_time = pygame.time.get_ticks() - start_time
-    # Calculate the width of the loading bar based on elapsed time
-    loading_bar_rect.width = (elapsed_time / loading_time) * loading_bar_length
+    input_box1.update()
+    input_box2.update()
 
-    # Clear the screen
-    screen.fill((255, 255, 255))  # Fill the screen with white
+    input_box1.draw(screen)
+    input_box2.draw(screen)
 
-    # Draw the logo image
-    screen.blit(logo_image, (screen_width // 2 - logo_image.get_width() // 2, screen_height // 2 - logo_image.get_height() // 2))
-
-    # Draw loading bar background
-    pygame.draw.rect(screen, loading_bar_background_color, (loading_bar_position[0], loading_bar_position[1], loading_bar_length, loading_bar_height))
-
-    # Draw loading bar
-    pygame.draw.rect(screen, loading_bar_color, loading_bar_rect)
-
-    # Update the display
-    pygame.display.update()
-
-    # Check if the loading time has passed
-    if elapsed_time > loading_time:
-        intro = False  # End the intro loop
-
-# Transition to MenuScene
-# menu_scene = MenuScene(screen)
-# menu_scene.run()  # Or however you've set up to run the menu scene
-
-# Clean up Pygame before exiting
+    pygame.display.flip()  # Cập nhật màn hình
+    # Thoát Pygame
 pygame.quit()
+sys.exit()
+
