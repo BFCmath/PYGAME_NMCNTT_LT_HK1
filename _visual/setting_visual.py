@@ -38,10 +38,19 @@ class SettingVisual(GeneralVisual):
         text_surf = self.font.render(str(number), True, Settings.SETTINGS_BUTTON_TEXT_COLOR)
         text_rect = text_surf.get_rect(center=(input_box_rect[0] + input_box_rect[2] // 2, input_box_rect[1] + input_box_rect[3] // 2))
         self.screen.blit(text_surf, text_rect)
+    def draw_name(self):
+        self.font = pygame.font.Font(Settings.FONT, Settings.NAME_SIZE)
+        text_surf = self.font.render(Settings.NAME_1, True, Settings.SETTINGS_BUTTON_TEXT_COLOR)
+        text_rect = text_surf.get_rect(topleft=(Settings.NAME_PLACE_1[0], Settings.NAME_PLACE_1[1]))
+        self.screen.blit(text_surf, text_rect)
+        text_surf = self.font.render(Settings.NAME_2, True, Settings.SETTINGS_BUTTON_TEXT_COLOR)
+        text_rect = text_surf.get_rect(topleft=(Settings.NAME_PLACE_2[0], Settings.NAME_PLACE_2[1]))
+        self.screen.blit(text_surf, text_rect)
+
     def draw_name_input_box(self):
         name_input_box_1 = InputBox(self.screen,Settings.SETTINGS_NAME_INPUT_BOX_RECT_1,Settings.ACTIVE_COLOR_INPUT_BOX,Settings.PASSIVE_COLOR_INPUT_BOX,Settings.INPUT_BOX_BACKGROUND_COLOR,Settings.FONT,Settings.SETTINGS_INPUT_BOX_TEXT_SIZE,Settings.INPUT_BOX_TEXT_COLOR,Singleton.player_name[0])
         name_input_box_1.draw_passive_box()
         name_input_box_2 = InputBox(self.screen,Settings.SETTINGS_NAME_INPUT_BOX_RECT_2,Settings.ACTIVE_COLOR_INPUT_BOX,Settings.PASSIVE_COLOR_INPUT_BOX,Settings.INPUT_BOX_BACKGROUND_COLOR,Settings.FONT,Settings.SETTINGS_INPUT_BOX_TEXT_SIZE,Settings.INPUT_BOX_TEXT_COLOR,Singleton.player_name[1])
         name_input_box_2.draw_passive_box()
         return name_input_box_1,name_input_box_2
-        pass
+        

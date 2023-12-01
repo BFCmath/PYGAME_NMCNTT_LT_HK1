@@ -26,6 +26,7 @@ class InputBox:
         self.text_color = text_color
         self.text = text
         self.draw_text(text)
+        self.active = False
         pass
     def _draw_background_box(self):
         pygame.draw.rect(self.screen,self.background_color,self.box_rect)

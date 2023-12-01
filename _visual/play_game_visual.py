@@ -31,8 +31,10 @@ class PlayGameVisual(GeneralVisual):
         self.draw_turn_text(Singleton.turn)
         back_button =self.draw_button(self.screen,PlayGame.BACK_BUTTON_RECT, PlayGame.BACK_TEXT, PlayGame.TEXT_SIZE, PlayGame.FONT, PlayGame.BACK_BUTTON_COLOR, PlayGame.BACK_TEXT_COLOR)
         # self.print_text(back_text, self.text_color, PlayGame.BACK_TEXT_POSITION, alignment="right")
-        self.print_text(PlayGame.PLAYER1_TEXT, self.text_color, PlayGame.PLAYER1_TEXT_POSITION, alignment="left")
-        self.print_text(PlayGame.PLAYER2_TEXT, self.text_color, PlayGame.PLAYER2_TEXT_POSITION, alignment="right")
+        _player1_text = Singleton.player_name[0] + ': X'
+        _player2_text = Singleton.player_name[1] + ': O'
+        self.print_text(_player1_text, self.text_color, PlayGame.PLAYER1_TEXT_POSITION, alignment="left")
+        self.print_text(_player2_text, self.text_color, PlayGame.PLAYER2_TEXT_POSITION, alignment="right")
         pygame.display.update()
         return back_button  
 

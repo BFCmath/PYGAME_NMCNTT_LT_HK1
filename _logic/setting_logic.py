@@ -4,14 +4,14 @@ from singleton import Singleton
 from game_setting import Settings
 # from _scene.menu_scene import MenuScene
 class SettingLogic:
-    def __init__(self,back_button, rect1, rect2):
+    def __init__(self,back_button, rect1, rect2,name_input_box_1,name_input_box_2):
         # Initialize the values for the input boxes as empty strings
         self.back_button = back_button
         self.input_values = ['10', '10']  # Default values for the input boxes
         self.input_boxes = [rect1, rect2]  # Rectangles for the input boxes
         self.active_box = None  # The index of the active input box
-        self.active_name_button_1 = False
-        self.active_name_button_2 = False
+        self.name_input_box_1 = name_input_box_1
+        self.name_input_box_2 = name_input_box_2
     
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -26,7 +26,8 @@ class SettingLogic:
                 self.active_box = 1
             else:
                 self.active_box = None
-
+        self.handle_name_input_box(event,self.name_input_box_1,player=0)
+        self.handle_name_input_box(event,self.name_input_box_2,player=1)
         # value_change = False
         # if event.type == pygame.KEYDOWN and self.active_box is not None:
         #     print("key down")
@@ -49,51 +50,28 @@ class SettingLogic:
         # Return the current values of the input boxes
         return self.input_values
     
-    def handle_name_input_box(self,event,name_input_box_1,name_input_box_2):
+    def handle_name_input_box(self,event,name_input_box,player):
         if event.type == pygame.MOUSEBUTTONDOWN:
         #If the mouse is clicked on the input_box rect
-            if name_input_box_1.box_rect.collidepoint(event.pos):
+            if name_input_box.box_rect.collidepoint(event.pos):
                 #Toggle the active variable
-                self.active_name_button_1 = not self.active_name_button_1
+                name_input_box.active = not name_input_box.active
             else:
-                self.active_name_button_1 = False
+                name_input_box.active = False
 
-            if(self.active_name_button_1):
-                name_input_box_1.draw_input_box()
+            if(name_input_box.active):
+                name_input_box.draw_input_box()
             else:
-                name_input_box_1.draw_passive_box()
-            
-            if name_input_box_2.box_rect.collidepoint(event.pos):
-                #Toggle the active variable
-                self.active_name_button_2 = not self.active_name_button_2
-            else:
-                self.active_name_button_2 = False
-
-            if(self.active_name_button_2):
-                name_input_box_2.draw_input_box()
-            else:
-                name_input_box_2.draw_passive_box()
-
-        if self.active_name_button_1 and event.type == pygame.KEYDOWN:
+                name_input_box.draw_passive_box()
+        if name_input_box.active and event.type == pygame.KEYDOWN:
             #If the key is backspace
             if event.key == pygame.K_BACKSPACE:
                 #Delete the last character
-                name_input_box_1.text = name_input_box_1.text[:-1]
-            elif name_input_box_1.text.__len__() < Settings.LIMIT_OF_NAME:
+                name_input_box.text = name_input_box.text[:-1]
+            elif name_input_box.text.__len__() < Settings.LIMIT_OF_NAME:
                 #Add the character to the text
-                name_input_box_1.text += event.unicode
-            name_input_box_1.draw_text(name_input_box_1.text)
-            Singleton.player_name[0] = name_input_box_1.text
+                name_input_box.text += event.unicode
+            name_input_box.draw_text(name_input_box.text)
+            Singleton.player_name[player] = name_input_box.text
 
-
-        if self.active_name_button_2 and event.type == pygame.KEYDOWN:
-            #If the key is backspace
-            if event.key == pygame.K_BACKSPACE:
-                #Delete the last character
-                name_input_box_2.text = name_input_box_2.text[:-1]
-            elif name_input_box_2.text.__len__() < Settings.LIMIT_OF_NAME:
-                #Add the character to the text
-                name_input_box_2.text += event.unicode
-            name_input_box_2.draw_text(name_input_box_2.text)
-            Singleton.player_name[1] = name_input_box_2.text
         
