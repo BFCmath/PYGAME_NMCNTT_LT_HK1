@@ -1,5 +1,5 @@
-dir_x = (-1, -1, 0, 1)
-dir_y = (0, -1, -1, -1)
+dir_x = (1, 0, -1, -1)
+dir_y = (-1, -1, -1, 0)
 
 def inside(num_row, num_col, cur_x, cur_y):
     return (0 <= cur_x < num_row) and (0 <= cur_y < num_col)
