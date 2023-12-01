@@ -4,6 +4,7 @@ from singleton import Singleton
 from game_setting import PlayGame,Board
 from singleton import Singleton
 from cell import Cell
+from check_win_logic import check_win
 class PlayGameLogic:
     def __init__(self,screen, back_button, cell_list):
         self.back_button = back_button
@@ -11,6 +12,7 @@ class PlayGameLogic:
         self.cell_list = cell_list 
         self.row_cells =  Singleton.row_cell
         self.col_cells =  Singleton.col_cell
+        self.logic_caro_board = [[(0) for i in range(self.col_cells)] for j in range(self.row_cells)]
     def calculate_posi_list_and_edge(row_cells,col_cells):
         edge_size = min(PlayGame.CARO_BOARD_WIDTH // col_cells, PlayGame.CARO_BOARD_HEIGHT // row_cells)
         
@@ -29,10 +31,26 @@ class PlayGameLogic:
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.back_button.collidepoint(event.pos):
-                Singleton.scenes = 0
-            for row in range(self.row_cells):
-                for col in range(self.col_cells):
-                    if self.cell_list[row][col].check_click(event.pos):
-                        print(row,col)
+                Singleton.scenes = 'menu'
+            turn_changed = self.handle_caro_board_logic(event)
+            return turn_changed
 
-
+    def handle_caro_board_logic(self,event):
+        for row in range(self.row_cells):
+            for col in range(self.col_cells):
+                content = self.cell_list[row][col].check_click(event.pos)
+                if content == None: continue
+                print(row,col)
+                self.logic_caro_board[row][col]=-1 if content == 'O' else 1
+                self.win_logic(row,col)
+                self.change_turn()
+                return True
+        return False        
+        
+    def win_logic(self,row,col):
+        turn = 1 if Singleton.turn == 0 else -1
+        if(check_win(turn,row,col,self.logic_caro_board,self.row_cells,self.col_cells)):
+            # print(self.logic_caro_board)
+            print(Singleton.player_name[Singleton.turn],"win")
+    def change_turn(self):
+        Singleton.turn = 1 if Singleton.turn == 0 else 0

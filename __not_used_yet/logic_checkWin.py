@@ -21,7 +21,11 @@ def checkWin(num_row, num_col, cur_row, cur_col, cnt):
 
         nxt_x = cur_row - dir_x[t]
         nxt_y = cur_row - dir_y[t]
+<<<<<<< HEAD:logic_checkWin.py
         if inside(num_row, num_col, nxt_x, nxt_y):
+=======
+        if inside(numRow, numCol, nxt_x, nxt_y):
+>>>>>>> d7aa9ac1168bb7beb5fe3749287454c5dad3e498:__not_used_yet/logic_checkWin.py
             both += cnt[nxt_x][nxt_y]
             cnt[cur_row][cur_col][7 - t] = cnt[nxt_x][nxt_y][t]  + 1
         else:
