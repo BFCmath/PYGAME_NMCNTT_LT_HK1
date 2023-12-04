@@ -19,3 +19,5 @@ class SceneManagement:
 
     def RunCurrentScene(self,event):
         self.current_scene.run_all_time(event)
+    def RunImplicitScene(self):
+        self.current_scene.run_implicit_time()

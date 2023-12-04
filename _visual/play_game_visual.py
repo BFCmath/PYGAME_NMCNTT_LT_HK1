@@ -20,12 +20,15 @@ class PlayGameVisual(GeneralVisual):
         elif alignment == "center":
             text_rect.center = position
         self.screen.blit(text_surface, text_rect)  # Blit the text surface to the screen
-    def get_turn_text(self,turn):
+    def draw_turn_text(self,turn):
+        print(Singleton.turn)
+        pygame.draw.rect(self.screen, PlayGame.BACKGROUND_COLOR, (0,0,Board.BOARD_WIDTH//2,50))
         text = Singleton.player_name[turn]
         text += "'s turn"
-        return  text
+        self.print_text(text, self.text_color, PlayGame.TURN_TEXT_POSITION, alignment="left")
+
     def draw_all_texts(self):
-        self.print_text(self.get_turn_text(Singleton.turn), self.text_color, PlayGame.TURN_TEXT_POSITION, alignment="left")
+        self.draw_turn_text(Singleton.turn)
         back_button =self.draw_button(self.screen,PlayGame.BACK_BUTTON_RECT, PlayGame.BACK_TEXT, PlayGame.TEXT_SIZE, PlayGame.FONT, PlayGame.BACK_BUTTON_COLOR, PlayGame.BACK_TEXT_COLOR)
         # self.print_text(back_text, self.text_color, PlayGame.BACK_TEXT_POSITION, alignment="right")
         self.print_text(PlayGame.PLAYER1_TEXT, self.text_color, PlayGame.PLAYER1_TEXT_POSITION, alignment="left")
