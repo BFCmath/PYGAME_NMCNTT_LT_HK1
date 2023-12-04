@@ -77,6 +77,9 @@ class Settings:
     NAME_1 = 'User1\'s name:'
     NAME_2 = 'User2\'s name:'
 
+    MAX_CARO_BOARD_SIZE = 30
+    MIN_CARO_BOARD_SIZE = 3
+    
     LIMIT_OF_NAME = 13
     SETTINGS_BUTTON_COLOR = (255, 255, 255) 
     SETTINGS_BUTTON_TEXT_COLOR = (0, 0, 10) 
@@ -107,7 +110,9 @@ class PlayGame:
     FONT = '__others\kongtext.ttf'
 
     CARO_BOARD_WIDTH = 900
-    CARO_BOARD_HEIGHT = 500
+    CARO_BOARD_HEIGHT = 510
+
+    
 
 class CellSetting:
     CELL_COLOR = (255, 255, 255)  # White

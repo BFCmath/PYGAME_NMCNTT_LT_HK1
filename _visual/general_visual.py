@@ -25,8 +25,8 @@ class InputBox:
         self.font = pygame.font.Font(font, size)
         self.text_color = text_color
         self.text = text
-        self.draw_text(text)
         self.active = False
+        self.draw_text(text)
         pass
     def _draw_background_box(self):
         pygame.draw.rect(self.screen,self.background_color,self.box_rect)
@@ -42,13 +42,26 @@ class InputBox:
         pygame.display.flip()
 
 
-    def draw_text(self,text):
-        # self.draw_input_box()
+    # def draw_text(self,text):
+    #     # self.draw_input_box()
         
-        # self.draw_background_box()
-        pygame.draw.rect(self.screen,self.background_color,self.box_rect)
+    #     # self.draw_background_box()
+    #     pygame.draw.rect(self.screen,self.background_color,self.box_rect)
 
-        pygame.draw.rect(self.screen,self.active_border_color,self.box_rect,2)
+    #     pygame.draw.rect(self.screen,self.active_border_color,self.box_rect,2)
+    #     text_surface = self.font.render(text, True, self.text_color)
+    #     self.screen.blit(text_surface, (self.box_rect[0] + 5, self.box_rect[1] + 5))
+    #     pygame.display.flip()
+    def draw_text(self, text):
+        pygame.draw.rect(self.screen, self.background_color, self.box_rect)
+        pygame.draw.rect(self.screen, self.active_border_color if self.active else self.passive_border_color, self.box_rect, 2)
+        
         text_surface = self.font.render(text, True, self.text_color)
-        self.screen.blit(text_surface, (self.box_rect[0] + 5, self.box_rect[1] + 5))
+        
+        # Calculate the center position of the text
+        text_rect = text_surface.get_rect(center=self.box_rect.center)
+        
+        # Blit the text surface onto the screen at the calculated position
+        self.screen.blit(text_surface, text_rect)
+        
         pygame.display.flip()

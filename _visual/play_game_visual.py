@@ -22,7 +22,7 @@ class PlayGameVisual(GeneralVisual):
         self.screen.blit(text_surface, text_rect)  # Blit the text surface to the screen
     def draw_turn_text(self,turn):
         print(Singleton.turn)
-        pygame.draw.rect(self.screen, PlayGame.BACKGROUND_COLOR, (0,0,Board.BOARD_WIDTH//2,50))
+        pygame.draw.rect(self.screen, PlayGame.BACKGROUND_COLOR, (0,0,Board.BOARD_WIDTH//2,40))
         text = Singleton.player_name[turn]
         text += "'s turn"
         self.print_text(text, self.text_color, PlayGame.TURN_TEXT_POSITION, alignment="left")

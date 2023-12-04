@@ -4,30 +4,25 @@ from singleton import Singleton
 from game_setting import Settings
 # from _scene.menu_scene import MenuScene
 class SettingLogic:
-    def __init__(self,back_button, rect1, rect2,name_input_box_1,name_input_box_2):
+    def __init__(self,back_button, size_input_box_1, size_input_box_2,name_input_box_1,name_input_box_2):
         # Initialize the values for the input boxes as empty strings
         self.back_button = back_button
-        self.input_values = ['10', '10']  # Default values for the input boxes
-        self.input_boxes = [rect1, rect2]  # Rectangles for the input boxes
-        self.active_box = None  # The index of the active input box
+        self.size_input_box_1 = size_input_box_1
+        self.size_input_box_2 = size_input_box_2
         self.name_input_box_1 = name_input_box_1
         self.name_input_box_2 = name_input_box_2
-    
+        
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             print("mouse down")
             if self.back_button.collidepoint(event.pos):
                 print("back")
                 Singleton.scenes = 'menu'
-            # Check which input box was clicked, if any
-            if self.input_boxes[0].collidepoint(event.pos):
-                self.active_box = 0
-            elif self.input_boxes[1].collidepoint(event.pos):
-                self.active_box = 1
-            else:
-                self.active_box = None
+            
         self.handle_name_input_box(event,self.name_input_box_1,player=0)
         self.handle_name_input_box(event,self.name_input_box_2,player=1)
+        self.handle_size_input_box(event,self.size_input_box_1,size_id=0)
+        self.handle_size_input_box(event,self.size_input_box_2,size_id=1)
         # value_change = False
         # if event.type == pygame.KEYDOWN and self.active_box is not None:
         #     print("key down")
@@ -74,4 +69,38 @@ class SettingLogic:
             name_input_box.draw_text(name_input_box.text)
             Singleton.player_name[player] = name_input_box.text
 
+    def handle_size_input_box(self,event,size_input_box,size_id):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+        #If the mouse is clicked on the input_box rect
+            if size_input_box.box_rect.collidepoint(event.pos):
+                #Toggle the active variable
+                size_input_box.active = not size_input_box.active
+            else:
+                size_input_box.active = False
+                if Singleton.caro_board_size[size_id] < Settings.MIN_CARO_BOARD_SIZE:
+                    Singleton.caro_board_size[size_id] = Settings.MIN_CARO_BOARD_SIZE
+                    Singleton.string_caro_board_size[size_id] = '0' + str(Settings.MIN_CARO_BOARD_SIZE) if Settings.MIN_CARO_BOARD_SIZE < 10 else str(Settings.MIN_CARO_BOARD_SIZE) 
+                    size_input_box.draw_text(Singleton.string_caro_board_size[size_id])
+
+            if(size_input_box.active):
+                size_input_box.draw_input_box()
+            else:
+                size_input_box.draw_passive_box()
+        if size_input_box.active and event.type == pygame.KEYDOWN:
+            #If the key is backspace
+            if event.key == pygame.K_BACKSPACE:
+                Singleton.string_caro_board_size[size_id] = '0'+Singleton.string_caro_board_size[size_id][0] 
+                Singleton.caro_board_size[size_id] = Singleton.caro_board_size[size_id]//10
+            elif event.unicode.isdigit() and Singleton.string_caro_board_size[size_id][0] == '0':
+                #Adding up the input
+                Singleton.caro_board_size[size_id] = Singleton.caro_board_size[size_id]*10+ int(event.unicode) 
+                Singleton.string_caro_board_size[size_id] = Singleton.string_caro_board_size[size_id][1]
+                Singleton.string_caro_board_size[size_id] += event.unicode
+                if(Singleton.caro_board_size[size_id] > Settings.MAX_CARO_BOARD_SIZE):
+                    Singleton.string_caro_board_size[size_id] = str(Settings.MAX_CARO_BOARD_SIZE)
+                    Singleton.caro_board_size[size_id] = Settings.MAX_CARO_BOARD_SIZE
+            print(Singleton.string_caro_board_size[size_id], Singleton.caro_board_size[size_id])
+        if size_input_box.active:
+            size_input_box.draw_text(Singleton.string_caro_board_size[size_id])
+            
         
