@@ -9,13 +9,12 @@ class SettingScene(Scene):
 
         self.setting_visual.draw_background()
         self.back_button = self.setting_visual.draw_settings()
-
+        self.setting_visual.draw_name()
         self.setting_visual.draw_caro_board_size()
-        self.input_box1,self.input_box2 = self.setting_visual.draw_input_box_place()
+        self.size_input_box_1,self.size_input_box_2 = self.setting_visual.draw_input_box_place()
+        self.name_input_box_1,self.name_input_box_2 = self.setting_visual.draw_name_input_box()
 
-        self.setting_logic = SettingLogic(self.back_button,self.input_box1,self.input_box2)
-        self.setting_visual.draw_number_in_text_box(self.setting_logic.input_values[0], self.input_box1)
-        self.setting_visual.draw_number_in_text_box(self.setting_logic.input_values[1], self.input_box2)
+        self.setting_logic = SettingLogic(self.back_button,self.size_input_box_1,self.size_input_box_2,self.name_input_box_1,self.name_input_box_2)
         pass
 
     def run_all_time(self,event):

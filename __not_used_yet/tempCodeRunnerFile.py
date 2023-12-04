@@ -6,7 +6,8 @@ screen = pygame.display.set_mode((1000, 700))
 base_font = pygame.font.Font(None, 28)
 fps = pygame.time.Clock()
 #Input
-user_text = ''
+user_text = '03'
+user_int = 3
 
 #Create a rectangle at (x, y)
 input_rect = pygame.Rect(10, 10, 0, 28)
@@ -14,7 +15,7 @@ input_rect = pygame.Rect(10, 10, 0, 28)
 color_active = pygame.Color(255, 255, 255)
 color_passive = pygame.Color(92, 92, 61)
 #Initially, the cursor is inside the rectangle
-active = True
+active = False
 checkBoardSize = 0
 color = color_active
 
@@ -36,24 +37,18 @@ while True:
                 continue
             #Backspace
             if event.key == pygame.K_BACKSPACE:
-                user_text = user_text[:-1]
+                user_text = '0'+user_text[0]
+                user_int = user_int//10
             #Digit
-            elif event.unicode.isdigit():
-                checkBoardSize = 0
+            elif event.unicode.isdigit() and user_text[0] == '0':
                 #Adding up the input
-                if user_text != '':
-                    checkBoardSize += int(user_text)
-                checkBoardSize = checkBoardSize * 10 + int(event.unicode)
-                #Valid range = [3; 15]
-                if checkBoardSize != 0:
-                    #Exceed -> minimize to 15
-                    if (checkBoardSize > 15):
-                        user_text = '15'
-                    #Inclusive -> valid
-                    else:
-                        user_text += event.unicode
-                else:
-                    user_text = '3'
+                user_int = user_int*10+ int(event.unicode) 
+                user_text= user_text[1]
+                user_text += event.unicode
+                if(user_int > 15):
+                    user_text = '15'
+                    user_int = 15
+            print(user_text, user_int)
 
     ##Create the update sence
     #Create an empty screen
@@ -64,8 +59,9 @@ while True:
     else:
         color = color_passive
         #Left empty or < 3 -> round up to 3
-        if (user_text == '' or int(user_text) < 3):
-            user_text = '3'
+        if (int(user_text) < 3):
+            user_text = '03'
+            print(user_text, user_int)
     #Draw the rectangle (border only)
     pygame.draw.rect(screen, color, input_rect, 2)
     #Expand the rectangle to the text size

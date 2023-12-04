@@ -15,7 +15,18 @@ class Board:
     BACKGROUND_COLOR = (137, 165, 97)
     GAME_CAPTION = "Game Caro"
 
+class Intro:
+    LOGO_RECT = calculate_rect_size(1/2,1/2,1/3,1/3)
+    LOGO_IMAGE = '__others\logo_caro.jpg'
+    LOGO_IMAGE_SIZE = (400,400)
+    LOGO_BACKGROUND_COLOR = (255,255,255)
+    LOGO_BORDER_COLOR = (0,0,0)
 
+    LOADING_BAR_RECT = calculate_rect_size(1/2,0.9,1/2,1/20)
+    LOADING_BAR_COLOR = (0, 128, 0)
+    LOADING_BAR_BACKGROUND_COLOR = (128, 128, 128)
+    LOADING_TIME = 1000
+    
 class Menu:
     TITLE_RECT = calculate_rect_size(1/2,2/7,1/5,1/6)
     TITLE_TEXT_SIZE = 50
@@ -26,12 +37,15 @@ class Menu:
     SETTINGS_BUTTON_RECT = calculate_rect_size(1/2,11/14,1/8,1/13)
     SETTINGS_BUTTON_SIZE = 13
 
+    QUIT_BUTTON_RECT = calculate_rect_size(1/2,0.9,0.1,0.05)
+    QUIT_BUTTON_SIZE = 13
     BUTTON_COLOR = (255, 255, 255)  # White
     BUTTON_TEXT_COLOR = (0, 0, 0)  # Black
     TITLE_TEXT = 'Caro'
     PLAY_TEXT = 'Play game'
     SETTINGS_TEXT = 'Settings'
-    FONT = 'kongtext.ttf'
+    QUIT_TEXT = 'Quit'
+    FONT = '__others\kongtext.ttf'
 
 class Settings:
     SETTINGS_TITLE_RECT = calculate_rect_size(1/2,1/7,1/3,1/6)
@@ -49,6 +63,24 @@ class Settings:
     SETTINGS_INPUT_BOX_RECT_1 = calculate_square_size(SETTINGS_X_PLACE[0]-0.035,SETTINGS_X_PLACE[1],0.04)
     SETTINGS_INPUT_BOX_RECT_2 = calculate_square_size(SETTINGS_X_PLACE[0]+0.035,SETTINGS_X_PLACE[1],0.04)
     
+    SETTINGS_NAME_INPUT_BOX_RECT_1 = (220,172,220,25)
+    SETTINGS_NAME_INPUT_BOX_RECT_2 = (Board.BOARD_WIDTH-SETTINGS_NAME_INPUT_BOX_RECT_1[0]-SETTINGS_NAME_INPUT_BOX_RECT_1[2],SETTINGS_NAME_INPUT_BOX_RECT_1[1],220,25)
+    ACTIVE_COLOR_INPUT_BOX = (255, 255, 145)  # White
+    PASSIVE_COLOR_INPUT_BOX = (0, 0, 0)  # Black
+    INPUT_BOX_BACKGROUND_COLOR = (255, 255, 255)  # Black
+    INPUT_BOX_TEXT_COLOR = (111,111, 111)  # Gray
+    SETTINGS_INPUT_BOX_TEXT_SIZE = 15
+    
+    NAME_PLACE_1 = (SETTINGS_NAME_INPUT_BOX_RECT_1[0],SETTINGS_NAME_INPUT_BOX_RECT_1[1]-15)
+    NAME_PLACE_2 = (SETTINGS_NAME_INPUT_BOX_RECT_2[0],SETTINGS_NAME_INPUT_BOX_RECT_2[1]-15)
+    NAME_SIZE = 10
+    NAME_1 = 'User1\'s name:'
+    NAME_2 = 'User2\'s name:'
+
+    MAX_CARO_BOARD_SIZE = 30
+    MIN_CARO_BOARD_SIZE = 3
+    
+    LIMIT_OF_NAME = 13
     SETTINGS_BUTTON_COLOR = (255, 255, 255) 
     SETTINGS_BUTTON_TEXT_COLOR = (0, 0, 10) 
     SETTINGS_INPUT_BOX_COLOR = (0, 0, 0) 
@@ -56,7 +88,7 @@ class Settings:
     SETTINGS_BACK_TEXT = 'Back' 
     SETTINGS_BOARD_SIZE_TEXT = 'Caro board size'
     SETTINGS_COLOR = (152,118,246)
-    FONT = 'kongtext.ttf'
+    FONT = '__others\kongtext.ttf'
 
 
 class PlayGame:
@@ -75,9 +107,12 @@ class PlayGame:
     
     TEXT_SIZE = 16
     TEXT_COLOR = (0, 0, 0)
-    FONT = 'kongtext.ttf'
-    CARO_BOARD_WIDTH = 800
-    CARO_BOARD_HEIGHT = 400
+    FONT = '__others\kongtext.ttf'
+
+    CARO_BOARD_WIDTH = 900
+    CARO_BOARD_HEIGHT = 510
+
+    
 
 class CellSetting:
     CELL_COLOR = (255, 255, 255)  # White
