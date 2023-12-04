@@ -4,7 +4,7 @@ from singleton import Singleton
 from game_setting import PlayGame,Board
 from singleton import Singleton
 from cell import Cell
-from check_win_logic import *
+from _logic.check_win_logic import *
 class PlayGameLogic:
     def __init__(self,screen, back_button, cell_list):
         self.back_button = back_button
