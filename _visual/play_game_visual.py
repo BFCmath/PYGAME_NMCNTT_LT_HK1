@@ -22,7 +22,7 @@ class PlayGameVisual(GeneralVisual):
         self.screen.blit(text_surface, text_rect)  # Blit the text surface to the screen
     def draw_turn_text(self,turn):
         print(Singleton.turn)
-        pygame.draw.rect(self.screen, PlayGame.BACKGROUND_COLOR, (0,0,Board.BOARD_WIDTH//2,50))
+        pygame.draw.rect(self.screen, PlayGame.BACKGROUND_COLOR, (0,0,Board.BOARD_WIDTH//2,40))
         text = Singleton.player_name[turn]
         text += "'s turn"
         self.print_text(text, self.text_color, PlayGame.TURN_TEXT_POSITION, alignment="left")
@@ -31,8 +31,10 @@ class PlayGameVisual(GeneralVisual):
         self.draw_turn_text(Singleton.turn)
         back_button =self.draw_button(self.screen,PlayGame.BACK_BUTTON_RECT, PlayGame.BACK_TEXT, PlayGame.TEXT_SIZE, PlayGame.FONT, PlayGame.BACK_BUTTON_COLOR, PlayGame.BACK_TEXT_COLOR)
         # self.print_text(back_text, self.text_color, PlayGame.BACK_TEXT_POSITION, alignment="right")
-        self.print_text(PlayGame.PLAYER1_TEXT, self.text_color, PlayGame.PLAYER1_TEXT_POSITION, alignment="left")
-        self.print_text(PlayGame.PLAYER2_TEXT, self.text_color, PlayGame.PLAYER2_TEXT_POSITION, alignment="right")
+        _player1_text = Singleton.player_name[0] + ': X'
+        _player2_text = Singleton.player_name[1] + ': O'
+        self.print_text(_player1_text, self.text_color, PlayGame.PLAYER1_TEXT_POSITION, alignment="left")
+        self.print_text(_player2_text, self.text_color, PlayGame.PLAYER2_TEXT_POSITION, alignment="right")
         pygame.display.update()
         return back_button  
 

@@ -10,8 +10,8 @@ class PlayGameLogic:
         self.back_button = back_button
         self.screen = screen
         self.cell_list = cell_list 
-        self.row_cells =  Singleton.row_cell
-        self.col_cells =  Singleton.col_cell
+        self.row_cells =  Singleton.caro_board_size[0]
+        self.col_cells =  Singleton.caro_board_size[1]
         self.logic_caro_board = [[(0) for i in range(self.col_cells)] for j in range(self.row_cells)]
         self.cnt_p = [[[[(0) for l in range(2)] for k in range(8)] for j in range(self.col_cells)] for i in range(self.row_cells)]
     def calculate_posi_list_and_edge(row_cells,col_cells):
