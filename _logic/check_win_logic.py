@@ -32,12 +32,12 @@ def check_win(num_row, num_col, cur_x, cur_y, cnt_p, turn):
         cnt_p[pre_x][pre_y][7 - i][turn] = cnt_p[nxt_x][nxt_y][i][turn] = pre_len + 1 + nxt_len
         if (pre_len + nxt_len > 3):
             pre_x += dir_x[i]
-            pre_y += dir_x[i]
+            pre_y += dir_y[i]
             pre_blocked = inside(num_row, num_col, pre_x, pre_y) and (cnt_p[pre_x][pre_y][i][1 - turn] > 0)
 
             nxt_x -= dir_x[i]
             nxt_y -= dir_y[i]
-            nxt_blocked = inside(num_row, num_col, nxt_x, nxt_y) and (cnt_p[nxt_x][nxt_y][i][1 - turn] > 0)
+            nxt_blocked = inside(num_row, num_col, nxt_x, nxt_y) and (cnt_p[nxt_x][nxt_y][7 - i][1 - turn] > 0)
             
             if (pre_blocked & nxt_blocked) == False:
                 is_win = True
