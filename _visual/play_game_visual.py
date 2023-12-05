@@ -1,7 +1,7 @@
 import pygame
 from game_setting import PlayGame, Board
 import cell
-from _visual.general_visual import GeneralVisual
+from _visual.general_visual import GeneralVisual, Button
 from singleton import Singleton
 class PlayGameVisual(GeneralVisual):
     def __init__(self, screen):
@@ -29,7 +29,7 @@ class PlayGameVisual(GeneralVisual):
 
     def draw_all_texts(self):
         self.draw_turn_text(Singleton.turn)
-        back_button =self.draw_button(self.screen,PlayGame.BACK_BUTTON_RECT, PlayGame.BACK_TEXT, PlayGame.TEXT_SIZE, PlayGame.FONT, PlayGame.BACK_BUTTON_COLOR, PlayGame.BACK_TEXT_COLOR)
+        back_button = Button(self.screen, PlayGame.BACK_BUTTON_RECT, PlayGame.BACK_HOVER_BUTTON_RECT, PlayGame.BACK_TEXT, PlayGame.TEXT_SIZE, PlayGame.FONT, PlayGame.TEXT_COLOR, PlayGame.BACKGROUND_COLOR, PlayGame.BACK_BUTTON_COLOR)
         # self.print_text(back_text, self.text_color, PlayGame.BACK_TEXT_POSITION, alignment="right")
         _player1_text = Singleton.player_name[0] + ': X'
         _player2_text = Singleton.player_name[1] + ': O'

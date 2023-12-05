@@ -32,8 +32,9 @@ def options():
         pygame.display.update()
 
 def main_menu():
+    SCREEN.blit(Define.Screen.BACKGROUND, (0, 0))
     while True:
-        SCREEN.blit(Define.Screen.BACKGROUND, (0, 0))
+        
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
@@ -59,7 +60,8 @@ def main_menu():
                 if Setting_Button.checkForInput(MENU_MOUSE_POS):
                     Setting_scene(SCREEN)
                 if Help_Button.checkForInput(MENU_MOUSE_POS):
-                    Help_scene()
+                    #Help_scene()
+                    pass
                 if Quit_Button.checkForInput(MENU_MOUSE_POS):
                     pygame.quit()
 

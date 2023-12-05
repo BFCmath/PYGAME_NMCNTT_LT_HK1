@@ -2,6 +2,7 @@
 import pygame
 from singleton import Singleton 
 from game_setting import Settings
+from _visual.general_visual import InputBox,Button
 # from _scene.menu_scene import MenuScene
 class SettingLogic:
     def __init__(self,back_button, size_input_box_1, size_input_box_2,name_input_box_1,name_input_box_2):
@@ -14,32 +15,13 @@ class SettingLogic:
         
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            print("mouse down")
-            if self.back_button.collidepoint(event.pos):
-                print("back")
+            if self.back_button.check_collide(event.pos):
                 Singleton.scenes = 'menu'
-            
+        self.back_button.check_hover(pygame.mouse.get_pos())
         self.handle_name_input_box(event,self.name_input_box_1,player=0)
         self.handle_name_input_box(event,self.name_input_box_2,player=1)
         self.handle_size_input_box(event,self.size_input_box_1,size_id=0)
         self.handle_size_input_box(event,self.size_input_box_2,size_id=1)
-        # value_change = False
-        # if event.type == pygame.KEYDOWN and self.active_box is not None:
-        #     print("key down")
-        #     print(self.active_box)
-        #     if event.key == pygame.K_BACKSPACE and self.input_values[self.active_box].__len__() >1:
-        #         # Remove the last character from the active input box's value
-        #         value_change = True
-
-        #         self.input_values[self.active_box] = self.input_values[self.active_box][:-1]
-
-        #     elif event.unicode.isdigit() and self.input_values[self.active_box].__len__() < 2:
-        #         value_change = True
-        #         potential_value = self.input_values[self.active_box] + event.unicode
-        #         # Check if the potential value is within the desired range
-        #         # if potential_value and 3 <= int(potential_value) <= 15:
-        #         self.input_values[self.active_box] = potential_value            
-        # return True if value_change else False
 
     def get_input_values(self):
         # Return the current values of the input boxes

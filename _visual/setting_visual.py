@@ -1,11 +1,12 @@
 import pygame
-from _visual.general_visual import GeneralVisual, InputBox
+from _visual.general_visual import GeneralVisual, InputBox,Button
 from game_setting import Settings,Board
 from singleton import Singleton
 class SettingVisual(GeneralVisual):
     def __init__(self, screen):
         self.screen = screen
         self.font = pygame.font.Font(Settings.FONT, 32)  # Adjust the size as needed
+        self.background_color = Settings.SETTINGS_COLOR
         
     def draw_caro_board_size(self):
         self.draw_button(self.screen,Settings.SETTINGS_BOARD_SIZE_RECT, Settings.SETTINGS_BOARD_SIZE_TEXT,Settings.SETTINGS_BOARD_SIZE_TEXT_SIZE,Settings.FONT,Settings.SETTINGS_BUTTON_COLOR,Settings.SETTINGS_BUTTON_TEXT_COLOR)
@@ -16,13 +17,12 @@ class SettingVisual(GeneralVisual):
         self.screen.blit(_text_surf, _text_rect)
     def draw_settings(self):
         self.draw_button(self.screen,Settings.SETTINGS_TITLE_RECT, Settings.SETTINGS_TITLE_TEXT,Settings.SETTINGS_TITLE_TEXT_SIZE,Settings.FONT,Settings.SETTINGS_BUTTON_COLOR,Settings.SETTINGS_BUTTON_TEXT_COLOR)
-        back_button = self.draw_button(self.screen,Settings.SETTINGS_BACK_BUTTON_RECT, Settings.SETTINGS_BACK_TEXT,Settings.SETTINGS_BACK_BUTTON_SIZE,Settings.FONT,Settings.SETTINGS_BUTTON_COLOR,Settings.SETTINGS_BUTTON_TEXT_COLOR)
-        # ve button
+        back_button = Button(self.screen,Settings.SETTINGS_BACK_BUTTON_RECT,Settings.SETTINGS_BACK_HOVER_BUTTON_RECT,Settings.SETTINGS_BACK_TEXT,Settings.SETTINGS_BACK_BUTTON_SIZE,Settings.FONT,Settings.SETTINGS_BUTTON_TEXT_COLOR,self.background_color,Settings.SETTINGS_BUTTON_COLOR)
         pygame.display.update()
         return back_button
         
     def draw_background(self):
-        self.screen.fill(Settings.SETTINGS_COLOR)
+        self.screen.fill(self.background_color)
         pygame.display.update()
     def draw_name(self):
         self.font = pygame.font.Font(Settings.FONT, Settings.NAME_SIZE)

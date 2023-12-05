@@ -1,5 +1,5 @@
 import pygame
-class Button():
+class Button:
     def __init__(self, pos, text_input, font, font_color, rect_width, rect_height):
         self.x = pos[0]
         self.y = pos[1]
@@ -18,15 +18,15 @@ class Button():
         screen.blit(self.text, self.text_rect)
     
     def checkForInput(self, position):
-	    if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
-	    	return True
-	    return False
+        if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
+            return True
+        return False
     
     def changeSize(self, position):
-	    if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
-	    	self.rect = pygame.Rect(self.x - (self.rect_width + 100)//2, self.y - (self.rect_height + 15) // 2, self.rect_width + 100, self.rect_height + 15)
-	    else:
-	        self.rect = pygame.Rect(self.x - self.rect_width // 2, self.y - self.rect_height // 2, self.rect_width, self.rect_height)
+        if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
+            self.rect = pygame.Rect(self.x - (self.rect_width + 100)//2, self.y - (self.rect_height + 15) // 2, self.rect_width + 100, self.rect_height + 15)
+        else:
+            self.rect = pygame.Rect(self.x - self.rect_width // 2, self.y - self.rect_height // 2, self.rect_width, self.rect_height)
 
 
 class Box():
