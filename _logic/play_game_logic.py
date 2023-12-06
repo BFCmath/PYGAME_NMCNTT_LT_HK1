@@ -5,13 +5,14 @@ from game_setting import PlayGame,Board
 from singleton import Singleton
 from cell import Cell
 from _logic.check_win_logic import *
+
 class PlayGameLogic:
     def __init__(self,screen, back_button, cell_list):
         self.back_button = back_button
         self.screen = screen
         self.cell_list = cell_list 
-        self.row_cells =  Singleton.caro_board_size[0]
-        self.col_cells =  Singleton.caro_board_size[1]
+        self.row_cells = Singleton.caro_board_size[0]
+        self.col_cells = Singleton.caro_board_size[1]
         self.logic_caro_board = [[(0) for i in range(self.col_cells)] for j in range(self.row_cells)]
         self.cnt_p = [[[[(0) for l in range(2)] for k in range(8)] for j in range(self.col_cells)] for i in range(self.row_cells)]
     def calculate_posi_list_and_edge(row_cells,col_cells):
@@ -36,7 +37,7 @@ class PlayGameLogic:
             turn_changed = self.handle_caro_board_logic(event)
             return turn_changed
 
-    def handle_caro_board_logic(self,event):
+    def handle_caro_board_logic(self, event):
         for row in range(self.row_cells):
             for col in range(self.col_cells):
                 content = self.cell_list[row][col].check_click(event.pos)
@@ -48,9 +49,9 @@ class PlayGameLogic:
                 return True
         return False        
         
-    def win_logic(self,row,col):
+    def win_logic(self, row,col):
         turn = 1 if Singleton.turn == 0 else -1
-        if(check_win(self.row_cells,self.col_cells,row,col,self.cnt_p,Singleton.turn)):
+        if(check_win(self.row_cells, self.col_cells, row, col, self.cnt_p, Singleton.turn)):
             # print(self.logic_caro_board)
             print(Singleton.player_name[Singleton.turn],"win")
     def change_turn(self):
