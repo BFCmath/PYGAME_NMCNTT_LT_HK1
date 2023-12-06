@@ -5,7 +5,7 @@ def inside(num_row, num_col, cur_x, cur_y):
     return (0 <= cur_x < num_row) and (0 <= cur_y < num_col)
 
 def check_win(num_row, num_col, cur_x, cur_y, cnt_p, turn):
-    is_win = False
+    wins = []
     for i in range(4):
         pre_x = cur_x + dir_x[i]
         pre_y = cur_y + dir_y[i]
@@ -40,6 +40,9 @@ def check_win(num_row, num_col, cur_x, cur_y, cnt_p, turn):
             nxt_blocked = inside(num_row, num_col, nxt_x, nxt_y) and (cnt_p[nxt_x][nxt_y][7 - i][1 - turn] > 0)
             
             if (pre_blocked & nxt_blocked) == False:
-                is_win = True
+                ## pos <-> x * num_row + num_col
+                ## i <-> dir_x[i], dir_y[i]
+                pos = (nxt_x + dir_x[i]) * num_col + (nxt_y + dir_y[i])
+                wins.append([pos, i])
 
-    return is_win
+    return wins

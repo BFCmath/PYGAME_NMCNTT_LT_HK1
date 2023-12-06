@@ -51,8 +51,11 @@ class PlayGameLogic:
         
     def win_logic(self, row,col):
         turn = 1 if Singleton.turn == 0 else -1
-        if(check_win(self.row_cells, self.col_cells, row, col, self.cnt_p, Singleton.turn)):
+        wins = check_win(self.row_cells, self.col_cells, row, col, self.cnt_p, Singleton.turn)
+        if len(wins) > 0:
             # print(self.logic_caro_board)
+            # print(lines)
             print(Singleton.player_name[Singleton.turn],"win")
+
     def change_turn(self):
         Singleton.turn = 1 if Singleton.turn == 0 else 0
