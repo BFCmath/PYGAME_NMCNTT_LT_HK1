@@ -4,6 +4,9 @@ dir_y = (-1, -1, -1, 0)
 def inside(num_row, num_col, cur_x, cur_y):
     return (0 <= cur_x < num_row) and (0 <= cur_y < num_col)
 
+def blocked(num_row, num_col, exc_x, exc_y, cnt_p, turn):
+    return inside(num_row, num_col, exc_x, exc_y) and cnt_p[exc_x][exc_y][0][turn] > 0
+
 def check_win(num_row, num_col, cur_x, cur_y, cnt_p, turn):
     wins = []
     for i in range(4):
@@ -17,6 +20,7 @@ def check_win(num_row, num_col, cur_x, cur_y, cnt_p, turn):
         else:
             pre_x = cur_x
             pre_y = cur_y
+        pre_blocked = blocked(num_row, num_col, pre_x + dir_x[i], pre_y + dir_y[i], cnt_p, 1 - turn)
 
         nxt_x = cur_x - dir_x[i]
         nxt_y = cur_y - dir_y[i]
@@ -28,21 +32,10 @@ def check_win(num_row, num_col, cur_x, cur_y, cnt_p, turn):
         else:
             nxt_x = cur_x
             nxt_y = cur_y
+        nxt_blocked = blocked(num_row, num_col, nxt_x - dir_x[i], nxt_y - dir_y[i], cnt_p, 1 - turn)
         
         cnt_p[pre_x][pre_y][7 - i][turn] = cnt_p[nxt_x][nxt_y][i][turn] = pre_len + 1 + nxt_len
-        if (pre_len + nxt_len > 3):
-            pre_x += dir_x[i]
-            pre_y += dir_y[i]
-            pre_blocked = inside(num_row, num_col, pre_x, pre_y) and (cnt_p[pre_x][pre_y][i][1 - turn] > 0)
-
-            nxt_x -= dir_x[i]
-            nxt_y -= dir_y[i]
-            nxt_blocked = inside(num_row, num_col, nxt_x, nxt_y) and (cnt_p[nxt_x][nxt_y][7 - i][1 - turn] > 0)
-            
-            if (pre_blocked & nxt_blocked) == False:
-                ## pos <-> x * num_row + num_col
-                ## i <-> dir_x[i], dir_y[i]
-                pos = (nxt_x + dir_x[i]) * num_col + (nxt_y + dir_y[i])
-                wins.append([pos, i])
+        if (pre_len + nxt_len > 3) and ((pre_blocked & nxt_blocked) == False):
+            wins.append([(pre_x, pre_y), (nxt_x, nxt_y)])
 
     return wins

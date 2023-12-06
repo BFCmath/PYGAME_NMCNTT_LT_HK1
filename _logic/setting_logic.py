@@ -1,7 +1,7 @@
 # setting_logic.py
 import pygame
-from singleton import Singleton 
-from game_setting import Settings
+from _add.singleton import Singleton 
+from _add.game_setting import Settings
 # from _scene.menu_scene import MenuScene
 class SettingLogic:
     def __init__(self,back_button, size_input_box_1, size_input_box_2,name_input_box_1,name_input_box_2):

@@ -1,7 +1,7 @@
 import pygame
 from _visual.general_visual import GeneralVisual, InputBox
-from game_setting import Settings,Board
-from singleton import Singleton
+from _add.game_setting import Settings,Board
+from _add.singleton import Singleton
 class SettingVisual(GeneralVisual):
     def __init__(self, screen):
         self.screen = screen

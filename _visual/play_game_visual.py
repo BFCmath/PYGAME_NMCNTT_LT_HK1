@@ -1,8 +1,8 @@
 import pygame
-from game_setting import PlayGame, Board
-import cell
+from _add import cell
+from _add.game_setting import PlayGame, Board
 from _visual.general_visual import GeneralVisual
-from singleton import Singleton
+from _add.singleton import Singleton
 class PlayGameVisual(GeneralVisual):
     def __init__(self, screen):
         self.screen = screen

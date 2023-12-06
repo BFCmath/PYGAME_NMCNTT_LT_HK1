@@ -1,11 +1,11 @@
 #thu vien
 import pygame
-from game_setting import Board
+from _add.game_setting import Board
 from _scene.menu_scene import MenuScene
 from _scene.setting_scene import SettingScene
 from _scene.play_game_scene import PlayGameScene
 from _scene.intro_scene import IntroScene
-from singleton import Singleton
+from _add.singleton import Singleton
 #khoi tao game
 pygame.init()
 

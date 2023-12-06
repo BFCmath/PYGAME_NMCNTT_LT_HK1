@@ -1,4 +1,4 @@
-from scene import Scene
+from _scene.scene import Scene
 from _visual.intro_visual import IntroVisual
 from _logic.intro_logic import IntroLogic
 class IntroScene(Scene):

@@ -1,4 +1,4 @@
-from scene import Scene
+from _scene.scene import Scene
 import pygame
 from _visual.setting_visual import SettingVisual
 from _logic.setting_logic import SettingLogic

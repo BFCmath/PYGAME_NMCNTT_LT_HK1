@@ -1,6 +1,6 @@
 import pygame 
-from game_setting import CellSetting 
-from singleton import Singleton
+from _add.game_setting import CellSetting 
+from _add.singleton import Singleton
 class Cell:
     def __init__(self, edge_size, position_center_x, position_center_y):
         self.edge_size = edge_size

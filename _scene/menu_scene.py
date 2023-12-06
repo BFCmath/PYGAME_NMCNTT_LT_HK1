@@ -1,5 +1,5 @@
-from scene import Scene
-from game_setting import Board
+from _scene.scene import Scene
+from _add.game_setting import Board
 from _visual.menu_visual import MenuVisual
 from _logic.menu_logic import MenuLogic
 

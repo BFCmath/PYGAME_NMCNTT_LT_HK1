@@ -1,7 +1,7 @@
 # setting_logic.py
 import pygame
-from singleton import Singleton
-from game_setting import Intro
+from _add.singleton import Singleton
+from _add.game_setting import Intro
 class IntroLogic:
     def __init__(self):
         self.loading_time = Intro.LOADING_TIME

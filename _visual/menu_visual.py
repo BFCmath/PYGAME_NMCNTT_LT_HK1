@@ -1,5 +1,5 @@
 import pygame
-from game_setting import Menu, Board
+from _add.game_setting import Menu, Board
 from _visual.general_visual import GeneralVisual
 class MenuVisual(GeneralVisual):
     def __init__(self, screen):

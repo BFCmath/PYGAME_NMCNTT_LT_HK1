@@ -1,10 +1,8 @@
-from scene import Scene
-import pygame
+from _scene.scene import Scene
 # from game_setting import Board
 from _visual.play_game_visual import PlayGameVisual
-from game_setting import Settings,PlayGame,Board
 from _logic.play_game_logic import PlayGameLogic
-from singleton import Singleton
+from _add.singleton import Singleton
 class PlayGameScene(Scene):
     def run_first_time(self,screen):
         self.play_game_visual = PlayGameVisual(screen)

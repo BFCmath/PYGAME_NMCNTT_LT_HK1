@@ -1,5 +1,5 @@
 import pygame
-from game_setting import Intro, Board
+from _add.game_setting import Intro, Board
 from _visual.general_visual import GeneralVisual
 class IntroVisual(GeneralVisual):
     def __init__(self, screen):
