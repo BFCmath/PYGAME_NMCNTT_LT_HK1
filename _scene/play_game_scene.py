@@ -12,8 +12,8 @@ class PlayGameScene(Scene):
         self.play_game_visual.draw_background()
         self.back_button = self.play_game_visual.draw_all_texts()
 
-        edge_size, posi_list = PlayGameLogic.calculate_posi_list_and_edge(Singleton.row_cell,Singleton.col_cell)
-        self.cell_list = self.play_game_visual.draw_caro_board(Singleton.row_cell,Singleton.col_cell,edge_size,posi_list)
+        edge_size, posi_list = PlayGameLogic.calculate_posi_list_and_edge(Singleton.caro_board_size[0],Singleton.caro_board_size[1])
+        self.cell_list = self.play_game_visual.draw_caro_board(Singleton.caro_board_size[0],Singleton.caro_board_size[1],edge_size,posi_list)
         self.play_game_logic = PlayGameLogic(screen,self.back_button, self.cell_list)
         pass
     def run_all_time(self,event):

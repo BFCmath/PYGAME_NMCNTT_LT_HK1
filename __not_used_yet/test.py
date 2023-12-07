@@ -1,75 +1,77 @@
 import pygame
 import sys
 
-class InputBox:
-    def __init__(self, x, y, w, h, text=''):
-        self.rect = pygame.Rect(x, y, w, h)
-        self.color = pygame.Color('lightskyblue3')
+class Button():
+    def __init__(self, screen, button_rect,hover_button_rect, text, text_size, font, text_color,background_color,button_color):
+        self.screen = screen
+        self.button_rect = pygame.rect.Rect(button_rect)
+        self.hover_button_rect = pygame.rect.Rect(hover_button_rect)
         self.text = text
-        self.font = pygame.font.SysFont(None, 32)
-        self.active = False
-        self.limit = 10
+        self.text_size = text_size
+        self.font = pygame.font.Font(font, text_size)
+        self.text_color = text_color
+        self.background_color = background_color
+        self.button_color = button_color
+        self.hover = False
+        pass
+    def draw_button(self):
+        pygame.draw.rect(self.screen,self.background_color,self.hover_button_rect)
+        pygame.draw.rect(self.screen,self.button_color,self.button_rect)
+        self.draw_text()
+        pygame.display.flip()
+    def draw_hover_button(self):
+        pygame.draw.rect(self.screen,self.button_color,self.hover_button_rect)
+        self.draw_text()
+        pygame.display.flip()
+    def check_hover(self, mouse_pos):
+        return mouse_pos[0] in range(self.button_rect.left, self.button_rect.right) and mouse_pos[1] in range(self.button_rect.top, self.button_rect.bottom)
+    def draw_text(self):
+        text_surface = self.font.render(self.text, True, self.text_color)
+        text_rect = text_surface.get_rect(center=self.button_rect.center)
+        self.screen.blit(text_surface, text_rect)
+        pygame.display.flip()
 
-    def handle_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.rect.collidepoint(event.pos):
-                self.active = not self.active
-            else:
-                self.active = False
-            self.color = pygame.Color('dodgerblue2') if self.active else pygame.Color('lightskyblue3')
-        if event.type == pygame.KEYDOWN and self.active:
-            if event.key == pygame.K_BACKSPACE:
-                self.text = self.text[:-1]
-            else:
-                if len(self.text) < self.limit:
-                    self.text += event.unicode
+def main():
+    # Initialize Pygame
+    pygame.init()
 
-    def update(self):
-        # Update the width of the rect based on the text length
-        width = max(200, self.font.size(self.text)[0] + 10)
-        self.rect.w = width
+    # Set up the display
+    screen_width = 800
+    screen_height = 600
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Button Example")
 
-    def draw(self, screen):
-        # Draw the text
-        txt_surface = self.font.render(self.text, True, pygame.Color('black'))
-        screen.blit(txt_surface, (self.rect.x + 5, self.rect.y + 5))
-        # Draw the rect
-        pygame.draw.rect(screen, self.color, self.rect, 2)
+    # Button configuration
+    button_rect = (350, 250, 100, 50)  # x, y, width, height
+    hover_button_rect = (345, 245, 110, 60)  # Slightly larger for hover effect
+    text = "Click Me"
+    text_size = 24
+    font = None  # None will use the default system font
+    text_color = (255, 255, 255)  # White text
+    background_color = (100, 100, 100)  # Black background
+    button_color = (0, 128, 0)  # Green button
 
-# Khởi tạo Pygame
-pygame.init()
+    # Create a Button instance
+    my_button = Button(screen, button_rect, hover_button_rect, text, text_size, font, text_color, background_color, button_color)
 
-# Thiết lập màn hình
-screen_width = 800
-screen_height = 600
-screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Enter Player Names")
+    # Main game loop
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-# Màu sắc
-white = (255, 255, 255)
+        # Check for mouse hover on the button
+        mouse_pos = pygame.mouse.get_pos()
+        if my_button.check_hover(mouse_pos):
+            my_button.draw_hover_button()
+        else:
+            my_button.draw_button()
 
-# Tạo hai input boxes
-input_box1 = InputBox(100, 150, 140, 32)
-input_box2 = InputBox(100, 250, 140, 32)
-screen.fill(white)  # Vẽ nền màn hình trắng
+        pygame.display.flip()
 
-# Game loop
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        input_box1.handle_event(event)
-        input_box2.handle_event(event)
+    pygame.quit()
+    sys.exit()
 
-    input_box1.update()
-    input_box2.update()
-
-    input_box1.draw(screen)
-    input_box2.draw(screen)
-
-    pygame.display.flip()  # Cập nhật màn hình
-    # Thoát Pygame
-pygame.quit()
-sys.exit()
-
+if __name__ == "__main__":
+    main()

@@ -1,6 +1,7 @@
 # setting_logic.py
 import pygame
 from singleton import Singleton
+from _visual.general_visual import Button
 class MenuLogic:
     def __init__(self,screen, play_button,setting_button,quit_button):
         self.play_button = play_button
@@ -10,11 +11,14 @@ class MenuLogic:
     
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.play_button.collidepoint(event.pos):
+            if self.play_button.check_collide(event.pos):
                 Singleton.scenes = 'play_game'
-            elif self.setting_button.collidepoint(event.pos):
+            elif self.setting_button.check_collide(event.pos):
                 Singleton.scenes = 'setting'
-            elif self.quit_button.collidepoint(event.pos):
+            elif self.quit_button.check_collide(event.pos):
                 pygame.quit()
                 quit()
+        self.play_button.check_hover(pygame.mouse.get_pos())
+        self.setting_button.check_hover(pygame.mouse.get_pos())
+        self.quit_button.check_hover(pygame.mouse.get_pos())
 
