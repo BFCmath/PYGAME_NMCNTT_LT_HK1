@@ -134,3 +134,27 @@ class CellSetting:
     EDGE_COLOR = (0, 0, 0)  # Black
     SIGN_COLOR = [(46,165,205),(232,15,15)]
     SIGN_FONT = None
+
+class EndGame:
+    
+
+    PLAY_AGAIN_BUTTON_RECT = calculate_rect_size(1/2,4/7,0.21,1/12)
+    PLAY_AGAIN_BUTTON_SIZE = 20
+    PLAY_AGAIN_HOVER_BUTTON_RECT = calculate_hover_size(PLAY_AGAIN_BUTTON_RECT, 50, 20)
+
+    SETTINGS_BUTTON_RECT = calculate_rect_size(1/2,11/14,1/8,1/13)
+    SETTINGS_BUTTON_SIZE = 13
+    SETTINGS_HOVER_BUTTON_RECT = calculate_hover_size(SETTINGS_BUTTON_RECT, 40, 10)
+
+    QUIT_BUTTON_RECT = calculate_rect_size(1/2,0.9,0.1,0.05)
+    QUIT_BUTTON_SIZE = 13
+    QUIT_HOVER_BUTTON_RECT = calculate_hover_size(QUIT_BUTTON_RECT, 30, 10)
+
+    BUTTON_COLOR = (255, 255, 255)  # White
+    BUTTON_TEXT_COLOR = (0, 0, 0)  # Black
+    END_GAME_BACKGROUND_COLOR = (156,35,156)
+    PLAY_AGAIN_TEXT = 'PLAY AGAIN'
+    SETTINGS_TEXT = 'Settings'
+    QUIT_TEXT = 'Quit'
+    FONT = '__others\kongtext.ttf'
+    
