@@ -7,8 +7,7 @@ def inside(num_row, num_col, cur_x, cur_y):
 def blocked(num_row, num_col, exc_x, exc_y, cnt_p, turn):
     return inside(num_row, num_col, exc_x, exc_y) and cnt_p[exc_x][exc_y][0][turn] > 0
 
-def check_win(num_row, num_col, cur_x, cur_y, cnt_p, turn):
-    wins = []
+def check_win(num_row, num_col, cur_x, cur_y, cnt_p, turn, wins):
     for i in range(4):
         pre_x = cur_x + dir_x[i]
         pre_y = cur_y + dir_y[i]
@@ -37,5 +36,3 @@ def check_win(num_row, num_col, cur_x, cur_y, cnt_p, turn):
         cnt_p[pre_x][pre_y][7 - i][turn] = cnt_p[nxt_x][nxt_y][i][turn] = pre_len + 1 + nxt_len
         if (pre_len + nxt_len > 3) and ((pre_blocked & nxt_blocked) == False):
             wins.append([(pre_x, pre_y), (nxt_x, nxt_y)])
-
-    return wins

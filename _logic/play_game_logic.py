@@ -52,7 +52,7 @@ class PlayGameLogic:
         return False        
         
     def win_logic(self, row,col):
-        self.wins = check_win(self.row_cells, self.col_cells, row, col, self._cnt_p, Singleton.turn)
+        check_win(self.row_cells, self.col_cells, row, col, self._cnt_p, Singleton.turn, self.wins)
         if len(self.wins) > 0:
             # print(self.logic_caro_board)
             for [start, end] in self.wins:
