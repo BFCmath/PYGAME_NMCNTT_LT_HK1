@@ -5,6 +5,7 @@ from _scene.menu_scene import MenuScene
 from _scene.setting_scene import SettingScene
 from _scene.play_game_scene import PlayGameScene
 from _scene.intro_scene import IntroScene
+from _scene.end_game_scene import EndGameScene
 from singleton import Singleton
 #khoi tao game
 pygame.init()
@@ -29,6 +30,8 @@ while running:
             scene_manager.SwitchToScene(SettingScene())
         elif(Singleton.scenes == 'play_game'):
             scene_manager.SwitchToScene(PlayGameScene())
+        elif(Singleton.scenes == 'end_game'):
+            scene_manager.SwitchToScene(EndGameScene())
         print(scene_manager.current_scene)
     scene_manager.RunImplicitScene()
     
