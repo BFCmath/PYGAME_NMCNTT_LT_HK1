@@ -13,8 +13,8 @@ class PlayGameLogic:
         self.row_cells =  Singleton.caro_board_size[0]
         self.col_cells =  Singleton.caro_board_size[1]
         self.logic_caro_board = [[(0) for i in range(self.col_cells)] for j in range(self.row_cells)]
-        
         self._cnt_p = [[[[(0) for l in range(2)] for k in range(8)] for j in range(self.col_cells)] for i in range(self.row_cells)]
+        self.wins = []
 
     def calculate_posi_list_and_edge(row_cells,col_cells):
         edge_size = (min(PlayGame.CARO_BOARD_WIDTH // col_cells, PlayGame.CARO_BOARD_HEIGHT // row_cells,45))
@@ -56,7 +56,7 @@ class PlayGameLogic:
         if len(self.wins) > 0:
             # print(self.logic_caro_board)
             for [start, end] in self.wins:
-                print(start, end, "\n")
+                print("from ", start, "to ", end, "\n")
             print(Singleton.player_name[Singleton.turn],"win")
     def change_turn(self):
         Singleton.turn = 1 if Singleton.turn == 0 else 0
