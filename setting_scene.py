@@ -1,4 +1,4 @@
-from scene import Scene
+from Scene import Scene
 from setting_visual import SettingVisual
 
 class SettingScene(Scene):

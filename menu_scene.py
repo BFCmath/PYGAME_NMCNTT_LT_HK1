@@ -1,4 +1,4 @@
-from scene import Scene
+from Scene import Scene
 from game_setting import Board
 from menu_visual import MenuVisual
 
