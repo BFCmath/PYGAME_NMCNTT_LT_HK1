@@ -5,7 +5,7 @@ class Screen:
     SCREEN_WIDTH = 1280
     SCREEN_HEIGHT = 720
     SCREEN_TITLE = "CARO SIEU CAP VJP PRO BY TRONG DOANH"
-    BACKGROUND = pygame.image.load("Assets/ChillChill.jpg")
+    BACKGROUND = pygame.image.load("Assets/Background.png")
     ENDGAME_SCENE = pygame.image.load("Assets/EndGame.png")
 
 class Font:

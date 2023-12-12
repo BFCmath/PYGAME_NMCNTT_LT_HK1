@@ -37,6 +37,7 @@ class Box():
         self.font_color = (50, 50, 50)
         self.font_type = font_type
         self.text_length = 2 if font_type == "number" else 12
+        self.text_default = str(text_default)
         self.text_input = str(text_default)
         self.box_color = (255, 255, 255)
         self.rect_width = rect_width
