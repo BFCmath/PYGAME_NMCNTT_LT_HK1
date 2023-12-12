@@ -7,7 +7,7 @@ class Button:
         self.font_color = font_color
         self.text_input = text_input
         self.text = self.font.render(self.text_input, True, self.font_color)
-        self.buttom_color = (160, 150, 100) 
+        self.buttom_color = (140, 70, 20)
         self.rect_width = rect_width
         self.rect_height = rect_height
         self.rect = pygame.Rect(self.x - rect_width // 2, self.y - rect_height // 2, rect_width, rect_height)
@@ -36,7 +36,8 @@ class Box():
         self.font = font
         self.font_color = (50, 50, 50)
         self.font_type = font_type
-        self.text_input = text_default
+        self.text_length = 2 if font_type == "number" else 12
+        self.text_input = str(text_default)
         self.box_color = (255, 255, 255)
         self.rect_width = rect_width
         self.rect_height = rect_height
@@ -75,7 +76,8 @@ class Box():
                 if event.key == pygame.K_BACKSPACE:
                     self.text_input = self.text_input[:-1]
                 else:
-                    self.text_input += event.unicode
+                    if len(self.text_input) < self.text_length:
+                        self.text_input += event.unicode
     
 class Panel():
     def __init__(self, pos, length, sound):

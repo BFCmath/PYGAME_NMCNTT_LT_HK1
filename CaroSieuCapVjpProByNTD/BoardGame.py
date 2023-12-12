@@ -1,4 +1,5 @@
 import pygame, Define
+from Button import Button
 
 pygame.mixer.init()
 
@@ -24,10 +25,14 @@ class Game_logic():
 
         self.Turn = 1
 
-        self.Score = (0, 0)
+        self.Score = [0, 0]
 
         self.Turn_Color = "#800000"
         self.not_Turn_Color = "black"
+
+        self.last_turn = [0, 0]
+
+        self.End = False
 
     def Draw_Piece(self, SCREEN, row, col):
         if self.Board[row][col] == 1:
@@ -51,8 +56,17 @@ class Game_logic():
                     self.Draw_Piece(SCREEN, row, col)
                 elif self.Board[row][col] == -1:
                     self.Draw_Piece(SCREEN, row, col)
-
         pygame.display.update()
+
+        isEnd = self.checkEnd(self.last_turn[0], self.last_turn[1])
+        if isEnd == -1:
+            self.Score[1] += 1
+            self.EndMatch(SCREEN)
+        elif isEnd == 1:
+            self.Score[0] += 1
+            self.EndMatch(SCREEN)
+        elif isEnd == 0:
+            self.EndMatch(SCREEN)
     
     def PrintInfor(self, SCREEN):
         if self.Turn == 1:
@@ -158,11 +172,87 @@ class Game_logic():
     def makeMove(self, row, col):
         if self.Board[row][col] == 0:
             self.Board[row][col] = self.Turn
-            self.checkEnd(row, col)
             self.Turn *= -1
+            self.last_turn = (row, col)
             Define.Sound.SOUND_EFFECT.play()
 
     def checkForInput(self, position):
         if position[0] in range(self.x0, self.xn) and position[1] in range(self.y0, self.yn):
             self.makeMove((position[1] - self.y0) // self.Cell_Size, (position[0] - self.x0) // self.Cell_Size)
+        return self.End
+
+    def ContinueGame(self):
+        for row in range(self.NumberHeightCell):
+            for col in range(self.NumberWidthCell):
+                self.Board[row][col] = 0
+    def EndGame(self, SCREEN):
+        text = ""
+        if self.Score[0] > self.Score[1]:
+            text = Define.get_font(35).render(f"{self.PlayerX} Chien Thang Ngoan Muc!", True, (140, 0, 0))
+        elif self.Score[0] < self.Score[1]:
+            text = Define.get_font(35).render(f"{self.PlayerO} Chien Thang Ngoan Muc!", True, (140, 0, 0))
+        else:
+            text = Define.get_font(35).render(f"Hai chien than ngang tai ngang suc!", True, (140, 0, 0))
+
+        rect = text.get_rect(center=(640, 50))
         
+        Menu_Button = Button(pos=(640, 620), text_input="End Game", font=Define.get_font(35), font_color="black", rect_width=320, rect_height=70)
+        
+        running = True
+        
+        while running:
+            SCREEN.blit(Define.Screen.ENDGAME_SCENE, (0, 0))
+            MOUSE_POS = pygame.mouse.get_pos()
+
+            SCREEN.blit(text, rect)
+
+            Menu_Button.changeSize(MOUSE_POS)
+            Menu_Button.update(SCREEN)
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if Menu_Button.checkForInput(MOUSE_POS):
+                        self.End = True
+                        running = False
+            pygame.display.update()
+
+    def EndMatch(self, SCREEN):
+        text = Define.get_font(50).render("CONTINUE OR END GAME?", True, "#b68f40")
+        rect = text.get_rect(center=(640, 250))
+        
+        Continue_Button = Button(pos=(420, 400), text_input="Continue", font=Define.get_font(35), font_color="black", rect_width=320, rect_height=70)
+        EndGame_Button = Button(pos=(840, 400), text_input="End Game", font=Define.get_font(35), font_color="black", rect_width=320, rect_height=70)
+        
+        running = True
+        
+        while running:
+            SCREEN.blit(Define.Popup.BLUR_SURFACE, (0, 0))
+            MOUSE_POS = pygame.mouse.get_pos()
+
+            pygame.draw.rect(SCREEN, Define.Popup.POPUP_COLOR, (100, 155, 1080, 300), 5, border_radius=30)
+
+            SCREEN.blit(text, rect)
+
+            for button in [Continue_Button, EndGame_Button]:
+                button.changeSize(MOUSE_POS)
+                button.update(SCREEN)
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if Continue_Button.checkForInput(MOUSE_POS):
+                        running = False
+                        self.ContinueGame()
+                    if EndGame_Button.checkForInput(MOUSE_POS):
+                        self.EndGame(SCREEN)
+                        running = False
+                        print(running)
+            pygame.display.update()
+
+    def quit(self):
+        if self.End:
+            return False
+        return True

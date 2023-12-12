@@ -4,11 +4,15 @@ from Button import Button, Box, Panel
 def SetBoardSize(SCREEN):
     text = Define.get_font(50).render("BOARD SIZE", True, "#b68f40")
     rect = text.get_rect(center=(640, 250))
+    
     Back_Button = Button(pos=(450, 500), text_input="Back", font=Define.get_font(35), font_color="black", rect_width=200, rect_height=70)
     Save_Button = Button(pos=(820, 500), text_input="Save", font=Define.get_font(35), font_color="black", rect_width=200, rect_height=70)
-    Width_box = Box(pos=(540, 360), font=Define.get_font(35), font_type="number", rect_width=120, rect_height=60, text_default="09")
-    Height_box = Box(pos=(740, 360), font=Define.get_font(35), font_type="number", rect_width=120, rect_height=60, text_default="09")
+    
+    Width_box = Box(pos=(740, 360), font=Define.get_font(35), font_type="number", rect_width=120, rect_height=60, text_default=Define.BoardGame.NUMBER_WIDTH_CELL)
+    Height_box = Box(pos=(540, 360), font=Define.get_font(35), font_type="number", rect_width=120, rect_height=60, text_default=Define.BoardGame.NUMBER_HEIGHT_CELL)
+    
     running = True
+    
     while running:
         SCREEN.blit(Define.Popup.BLUR_SURFACE, (0, 0))
         MOUSE_POS = pygame.mouse.get_pos()
@@ -34,7 +38,8 @@ def SetBoardSize(SCREEN):
                 if Back_Button.checkForInput(MOUSE_POS):
                     running = False
                 if Save_Button.checkForInput(MOUSE_POS):
-                    print("Save", Width_box.text_input)
+                    Define.BoardGame.NUMBER_WIDTH_CELL = Width_box.text_input
+                    Define.BoardGame.NUMBER_HEIGHT_CELL = Height_box.text_input
                     running = False
             Width_box.handle_event(event)
             Height_box.handle_event(event)
@@ -49,12 +54,14 @@ def SetPlayer(SCREEN):
     
     player1 = Define.get_font(30).render("Player 1: ", False, "white")
     player2 = Define.get_font(30).render("Player 2: ", False, "white")
-    rect1 = player1.get_rect(center=(420, 320))
-    rect2 = player2.get_rect(center=(420, 400))
+    rect1 = player1.get_rect(center=(400, 320))
+    rect2 = player2.get_rect(center=(400, 400))
     
-    Player1_box = Box(pos=(750, 320), font=Define.get_font(30), font_type="text", rect_width=420, rect_height=50, text_default="Player 1")
-    Player2_box = Box(pos=(750, 400), font=Define.get_font(30), font_type="text", rect_width=420, rect_height=50, text_default="Player 2")
+    Player1_box = Box(pos=(750, 320), font=Define.get_font(30), font_type="text", rect_width=420, rect_height=50, text_default=Define.BoardGame.PLAYER_X)
+    Player2_box = Box(pos=(750, 400), font=Define.get_font(30), font_type="text", rect_width=420, rect_height=50, text_default=Define.BoardGame.PLAYER_O)
+    
     running = True
+    
     while running:
         SCREEN.blit(Define.Popup.BLUR_SURFACE, (0, 0))
         MOUSE_POS = pygame.mouse.get_pos()
@@ -81,7 +88,8 @@ def SetPlayer(SCREEN):
                 if Back_Button.checkForInput(MOUSE_POS):
                     running = False
                 if Save_Button.checkForInput(MOUSE_POS):
-                    print("Save", Player1_box.text_input, Player2_box.text_input)
+                    Define.BoardGame.PLAYER_X = Player1_box.text_input
+                    Define.BoardGame.PLAYER_O = Player2_box.text_input
                     running = False
             Player1_box.handle_event(event)
             Player2_box.handle_event(event)

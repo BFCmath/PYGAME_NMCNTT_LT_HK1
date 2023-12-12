@@ -6,7 +6,6 @@ from PlayGame_scene import PlayGame_scene
 def main_menu(SCREEN):
     while True:        
         SCREEN.blit(Define.Screen.BACKGROUND, (0, 0))
-        
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         Menu_text = Define.get_font(100).render("MAIN MENU", True, "#696969")

@@ -5,7 +5,8 @@ class Screen:
     SCREEN_WIDTH = 1280
     SCREEN_HEIGHT = 720
     SCREEN_TITLE = "CARO SIEU CAP VJP PRO BY TRONG DOANH"
-    BACKGROUND = pygame.image.load("Assets/Background.png")
+    BACKGROUND = pygame.image.load("Assets/ChillChill.jpg")
+    ENDGAME_SCENE = pygame.image.load("Assets/EndGame.png")
 
 class Font:
     FONT_FILE_PATH = "FontText/KongText.ttf"
@@ -29,6 +30,10 @@ class Popup:
 class BoardGame:
     BOARD_WIDTH = 1080
     BOARD_HEIGHT = 520
+    NUMBER_WIDTH_CELL = "09"
+    NUMBER_HEIGHT_CELL = "09"
+    PLAYER_X = "Player 1"
+    PLAYER_O = "Player 2"
 
 class Sound:
     BACKGROUND_MUSIC = pygame.mixer.Sound("Assets/MusicBackground.mp3")
