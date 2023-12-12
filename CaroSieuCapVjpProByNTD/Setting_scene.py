@@ -38,8 +38,15 @@ def SetBoardSize(SCREEN):
                 if Back_Button.checkForInput(MOUSE_POS):
                     running = False
                 if Save_Button.checkForInput(MOUSE_POS):
-                    Define.BoardGame.NUMBER_WIDTH_CELL = Width_box.text_default if Width_box.text_input == "" else Width_box.text_input
-                    Define.BoardGame.NUMBER_HEIGHT_CELL = Height_box.text_default if Height_box.text_input == "" else Height_box.text_input                   
+                    if(Width_box.text_input == ""): Define.BoardGame.NUMBER_WIDTH_CELL = Width_box.text_default
+                    elif(int(Width_box.text_input )<8) : Define.BoardGame.NUMBER_WIDTH_CELL = "08"
+                    elif(int(Width_box.text_input )>30) : Define.BoardGame.NUMBER_WIDTH_CELL = "30"
+                    else: Define.BoardGame.NUMBER_WIDTH_CELL = Width_box.text_input
+                    if(Height_box.text_input == ""): Define.BoardGame.NUMBER_HEIGHT_CELL = Height_box.text_default
+                    elif(int(Height_box.text_input )<8) : Define.BoardGame.NUMBER_HEIGHT_CELL = "08"
+                    elif(int(Height_box.text_input )>30) : Define.BoardGame.NUMBER_HEIGHT_CELL = '30'
+                    else: Define.BoardGame.NUMBER_HEIGHT_CELL = Height_box.text_input
+
                     running = False
             Width_box.handle_event(event)
             Height_box.handle_event(event)
