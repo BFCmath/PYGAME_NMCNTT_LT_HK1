@@ -38,8 +38,8 @@ def SetBoardSize(SCREEN):
                 if Back_Button.checkForInput(MOUSE_POS):
                     running = False
                 if Save_Button.checkForInput(MOUSE_POS):
-                    Define.BoardGame.NUMBER_WIDTH_CELL = Width_box.text_input
-                    Define.BoardGame.NUMBER_HEIGHT_CELL = Height_box.text_input
+                    Define.BoardGame.NUMBER_WIDTH_CELL = Width_box.text_default if Width_box.text_input == "" else Width_box.text_input
+                    Define.BoardGame.NUMBER_HEIGHT_CELL = Height_box.text_default if Height_box.text_input == "" else Height_box.text_input                   
                     running = False
             Width_box.handle_event(event)
             Height_box.handle_event(event)
@@ -88,8 +88,8 @@ def SetPlayer(SCREEN):
                 if Back_Button.checkForInput(MOUSE_POS):
                     running = False
                 if Save_Button.checkForInput(MOUSE_POS):
-                    Define.BoardGame.PLAYER_X = Player1_box.text_input
-                    Define.BoardGame.PLAYER_O = Player2_box.text_input
+                    Define.BoardGame.PLAYER_X = Player1_box.text_default if Player1_box.text_input == "" else Player1_box.text_input
+                    Define.BoardGame.PLAYER_O = Player2_box.text_default if Player2_box.text_input == "" else Player2_box.text_input
                     running = False
             Player1_box.handle_event(event)
             Player2_box.handle_event(event)
