@@ -5,7 +5,7 @@ class Screen:
     SCREEN_WIDTH = 1280
     SCREEN_HEIGHT = 720
     SCREEN_TITLE = "CARO SIEU CAP VJP PRO BY TRONG DOANH"
-    BACKGROUND = pygame.image.load("Assets/ChillChill.jpg")
+    BACKGROUND = pygame.image.load("Assets/Background.png")
     ENDGAME_SCENE = pygame.image.load("Assets/EndGame.png")
 
 class Font:
@@ -41,4 +41,21 @@ class Sound:
     
     SOUND_EFFECT = pygame.mixer.Sound("Assets/WriteEffect.wav")
     SOUND_EFFECT.set_volume(100)
+def calculate_rect_size(ratioPostitionX,ratioPositionY,ratioWidth,ratioHeight):
+        _width = Screen.SCREEN_WIDTH*ratioWidth
+        _height = Screen.SCREEN_HEIGHT*ratioHeight
+        _postionX = Screen.SCREEN_WIDTH* ratioPostitionX - _width//2
+        _postionY = Screen.SCREEN_HEIGHT*ratioPositionY - _height//2
+        return (_postionX,_postionY,_width,_height)
 
+class Intro:
+    LOGO_RECT = calculate_rect_size(1/2,1/2,1/3,1/3)
+    LOGO_IMAGE = 'Assets\logo_caro.jpg'
+    LOGO_IMAGE_SIZE = (400,400)
+    LOGO_BACKGROUND_COLOR = (255,255,255)
+    LOGO_BORDER_COLOR = (0,0,0)
+
+    LOADING_BAR_RECT = calculate_rect_size(1/2,0.9,1/2,1/20)
+    LOADING_BAR_COLOR = (0, 128, 0)
+    LOADING_BAR_BACKGROUND_COLOR = (128, 128, 128)
+    LOADING_TIME = 5000

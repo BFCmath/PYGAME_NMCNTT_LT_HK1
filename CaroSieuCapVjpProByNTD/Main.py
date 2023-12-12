@@ -1,4 +1,4 @@
-import pygame, Menu, Define
+import pygame, Intro, Define
 
 pygame.init()
 pygame.mixer.init()
@@ -8,4 +8,4 @@ pygame.display.set_caption("Menu")
 
 Define.Sound.BACKGROUND_MUSIC.play(-1)
 
-Menu.main_menu(SCREEN)
+Intro.intro(SCREEN)
